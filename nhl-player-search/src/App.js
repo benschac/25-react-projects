@@ -4,6 +4,16 @@ import List from './List';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.handleInputValue = this.handleInputValue.bind(this);
+    this.state = {inputValue:''};
+  }
+
+  handleInputValue(inputValue){
+    this.setState({inputValue});
+  }
   getData() {
     if(self.fetch) {
         // run my fetch request here
@@ -26,8 +36,9 @@ class App extends Component {
   render() {
     return (
       <div>
-      <Filter />
-      <List players={this.getData()}/>
+      <Filter inputValue={this.state.inputValue}
+        onChange={this.handleInputValue}/>
+      <List inputValue={this.state.inputValue}/>
       </div>
     );
   }
