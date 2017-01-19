@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Filter from './Filter';
 import List from './List';
+import Chart from './Chart';
+import players from './players.json';
 import './App.css';
 
 class App extends Component {
@@ -15,7 +17,7 @@ class App extends Component {
     this.setState({inputValue});
   }
   getData() {
-    if(self.fetch) {
+    if (self.fetch) {
         // run my fetch request here
         let url = 'https://rawgit.com/benschac/ea8eacba1121711e2e542732e6d3e12d/raw/3eff20b38cd2a8f7c36c5f3e7f196442338a2eab/active-nhl-players.json';
         fetch(url).then((response) => {
@@ -34,14 +36,26 @@ class App extends Component {
   }
 
   render() {
+    let filteredPlayers = filterPlayers(this.state.inputValue, players.activeplayers.playerentry)
     return (
       <div>
+
+      <Chart players={filteredPlayers} onChange={this.state.inputValue} />
       <Filter inputValue={this.state.inputValue}
-        onChange={this.handleInputValue}/>
-      <List inputValue={this.state.inputValue}/>
+        onChange={this.handleInputValue} />
+      <List players={filteredPlayers} />
+
       </div>
     );
   }
+}
+console.log(players);
+function filterPlayers(inputValue, players) {
+  return players.filter((player) => {
+    return player.player.FirstName.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1 ||
+     player.player.LastName.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+     || player.player.Age === inputValue;
+   })
 }
 
 export default App;
