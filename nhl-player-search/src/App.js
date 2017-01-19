@@ -53,7 +53,9 @@ console.log(players);
 function filterPlayers(inputValue, players) {
   return players.filter((player) => {
     return player.player.FirstName.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1 ||
-     player.player.LastName.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+     player.player.LastName.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1 ||
+     (player.team &&
+     player.team.Name.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1)
      || player.player.Age === inputValue;
    })
 }
