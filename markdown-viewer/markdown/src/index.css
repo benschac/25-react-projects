@@ -1,0 +1,10 @@
+div.marked {
+  float: right;
+  width: 33%;
+}
+
+textarea {
+  float: left;
+  height: 500px;
+  width: 500px;
+}
