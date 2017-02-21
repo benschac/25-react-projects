@@ -31,7 +31,12 @@ function FormatPause(props) {
   )
 }
 
+function StopsList(props) {
+  const stops = props.stopsList;
+  const stopsList = stops.map((stop, index) => <li key={index}>Count of Stops: {index + 1} at {stop}</li>)
+  return <ul>{stopsList}</ul>
 
+}
 
 class Clock extends Component {
   constructor(props) {
@@ -42,7 +47,8 @@ class Clock extends Component {
       isToggleOn: true,
       paused: new Date(),
       stops: 0,
-      arr: []
+      stopsLog: [],
+      value: 'text'
       }
 
     // this.handleClick = this.handleClick.bind(this);
@@ -50,17 +56,13 @@ class Clock extends Component {
 
 
   handleClick = () => {
-    console.log('fired', this);
     // this.setState(prev => {toggle: !prev.toggle})
     if(this.state.isToggleOn) {
         clearInterval(this.timeId);
         this.countStop();
         this.handleStops();
         this.toggle();
-
-        this.setState((prev) => ({
-          
-        }))
+        this.setState((prev) => ({stopsLog: prev.stopsLog.concat(prev.paused.toLocaleTimeString())}))
     } else {
         this.toggle();
         clearInterval(this.stopId);
@@ -105,11 +107,14 @@ class Clock extends Component {
   handleStops = () => {
     this.setState((prev) => ({stops :prev.stops + 1}));
   }
+
+  handleChange = (event) => {
+    this.setState({value: event.target.value.toUpperCase()});
+  }
   render() {
-    let record = this.state.interactionRecord;
+
     return (
       <div>
-          <h1>Hello</h1>
           <FormatDate date={this.state.date} />
           {
             !this.state.isToggleOn ? <FormatPause paused={this.state.paused}
@@ -117,7 +122,9 @@ class Clock extends Component {
                                       stops={this.state.stops} /> : ""
           }
           <button onClick={this.handleClick}>{this.state.isToggleOn ? "On" : "Off"}</button>
-          <UserInteractions paused={this.state.paused.toLocaleTimeString()} stops={this.state.stops}/>
+          <StopsList stopsList={this.state.stopsLog} />
+          <input value={this.state.value} onChange={this.handleChange}/>
+          <h3>{this.state.value}</h3>
       </div>
     );
   }

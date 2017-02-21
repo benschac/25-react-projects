@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class UserInteractions extends Component {
+class TempConversion extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,11 +23,10 @@ class UserInteractions extends Component {
 
     return (
       <div>
-      <h1>User Interactions</h1>
-      <button onClick={this.handleClick}>hello</button>
+      
       </div>
     );
   }
 }
 
-export default UserInteractions;
+export default TempConversion;
