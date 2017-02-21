@@ -20,6 +20,7 @@ export default class Game extends React.Component {
 
 // ========================================
 
+// Stateless functional Component
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
