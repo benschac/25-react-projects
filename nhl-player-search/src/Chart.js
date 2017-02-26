@@ -22,7 +22,6 @@ class Chart extends Component {
 		return (
 
       <svg className="chart" height="500px" width="900px"></svg>
-
 		);
 	}
 
@@ -86,33 +85,46 @@ function updateChart(players) {
 
 
 function initializeChart(players) {
+	let agesMap = countAges(players);
+	let ageKVpairs = decryptMap(agesMap);
 
-  const width = 900;
-  const height = 500;
+	const margin = {top: 20, left: 50, bottom: 20, right: 20};
+  const width = 900 - margin.right - margin.left;
+  const height = 500 - margin.top - margin.bottom;
 
-  var agesMap = countAges(players);
-  var ageKVpairs = decryptMap(agesMap);
+	let x = d3.scaleLinear().range([0, width]);
+	let y = d3.scaleLinear().range([height, 0]);
 
-  var ageMaxHeight = Math.max.apply(Math, ageKVpairs.map(function(ageGroup){ return ageGroup.count; })) + 40;
+	let svg = d3.select("svg")
+							.attr("width", width + margin.left + margin.right)
+							.attr("height", height + margin.bottom + margin.top)
+							.append("g")
+							.attr("transform",
+          			"translate(" + margin.left + "," + margin.top + ")");
 
-  var barWidth = width/ageKVpairs.length;
+	ageKVpairs.forEach(el => el.age = +el.age );
 
-  var groups = d3.select(".chart")
-    .selectAll("g")
-    .data(ageKVpairs)
-    .enter()
-    .append("g")
-    .attr("transform", (d,i)=>{ return "translate("+i*barWidth+","+(height-(d.count*height/ageMaxHeight))+")" })
+	x.domain(d3.extent(ageKVpairs, d =>  d.age));
+	y.domain([0, d3.max(ageKVpairs ,d => d.count)])
 
-  groups.append("rect")
-        .attr("width", barWidth - 4)
-        .attr("height", (d)=>{ return d.count * height/ageMaxHeight })
-        .attr("fill", "red")
+	let bar = svg.selectAll('.bar')
+		.enter().data(ageKVpairs)
+		.append("rect")
+		.append("g")
+		.attr('class', 'bar')
+		.attr('x', d => d.age)
+		.attr('y', d => d.count)
+		.attr('width', width / ageKVpairs.length)
+		.attr('height', d => height - y(d.count));
 
-  groups.append("text")
-    .text(function(d) { return d.age; })
-    .attr("x", 2)
-    .attr("y", -4)
+		console.log(bar);
+
+	svg.append("g")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x));
+
+	svg.append("g")
+		      .call(d3.axisLeft(y));
 
 }
 
