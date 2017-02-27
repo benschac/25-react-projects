@@ -22,7 +22,6 @@ class Chart extends Component {
 		return (
 
       <svg className="chart" height="500px" width="900px"></svg>
-
 		);
 	}
 
@@ -30,97 +29,98 @@ class Chart extends Component {
 
 
 function updateChart(players) {
+	let agesMap = countAges(players);
+	let ageKVpairs = decryptMap(agesMap);
+	let filtered = ageKVpairs.filter(el => el.age ? el.age : "");
+	const margin = {top: 20, left: 50, bottom: 20, right: 20};
+	const width = 800 - margin.right - margin.left;
+	const height = 400 - margin.top - margin.bottom;
 
-  const width = 900;
-  const height = 500;
-
-  var agesMap = countAges(players);
-  var ageKVpairs = decryptMap(agesMap);
-
-  var ageMaxHeight = Math.max.apply(Math, ageKVpairs.map(function(ageGroup){ return ageGroup.count; })) + 40;
-
-  var barWidth = width/ageKVpairs.length;
-
-  // Select chart to work with and giving it data.
-  var selection = d3.select(".chart")
-    .selectAll("g")
-    .data(ageKVpairs);
+	let x = d3.scaleLinear().range([0, width]);
+	let y = d3.scaleLinear().range([height, 0]);
 
 
-  selection.exit()
-    .remove();
+	x.domain(d3.extent(filtered, d =>  d.age ));
+	y.domain([0, d3.max(filtered, d => d.count)]);
 
-  // Adding any rectangles for any new data points.
-  var newG = selection.enter()
-    .append("g");
-
-  var groups = d3.selectAll("g")
-
-  groups
-    .attr("transform", (d,i)=>{ console.log("Height", height, "d.count", d.count,"i", i, "agemaxheight", ageMaxHeight); return "translate("+(i*barWidth)+","+(height-(d.count*height/ageMaxHeight))+")" })
+	d3.select('.chart').remove();
 
 
-  // Updating.
-  groups.selectAll("rect")
-    .attr("width", barWidth - 4)
-    .attr("height", (d)=>{ console.log("age", d.age, "bar height", d.count * height / ageMaxHeight); return d.count * height/ageMaxHeight })
-    .attr("fill", "red");
-    selection.exit()
-      .remove();
-  newG.append("rect")
-      .attr("width", barWidth - 2)
-      .attr("height", (d)=>{ return d.count * height / ageMaxHeight})
-      .attr("fill", "red")
+	let svg = d3.select("body").append('svg')
+							.attr('class', 'chart')
+							.attr("width", width + margin.left + margin.right)
+							.attr("height", height + margin.bottom + margin.top)
+							.append("g")
+							.attr("transform",
+          			"translate(" + margin.left + "," + margin.top + ")");
 
-  newG.append("text")
-      .text(function(d) { return d.age; })
-      .attr("x", 2)
-      .attr("y", 2)
+	x.domain(d3.extent(filtered, d =>  d.age ));
+	y.domain([0, d3.max(filtered, d => d.count)]);
 
+	let bar = svg.selectAll('.bar')
+		.data(filtered).enter()
+		.append("rect")
+		.attr('class', 'bar')
+		.attr('x', d => x(d.age) )
+		.attr('y', d => y(d.count))
+		.attr('width', width / filtered.length)
+		.attr('height', d => height - y(d.count));
 
+	svg.append("g")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x).ticks(filtered.length - 1));
 
-  console.log(ageKVpairs)
-
+	svg.append("g")
+		      .call(d3.axisLeft(y));
 
 }
 
 
 function initializeChart(players) {
+	let agesMap = countAges(players);
+	let ageKVpairs = decryptMap(agesMap);
 
-  const width = 900;
-  const height = 500;
+	const margin = {top: 20, left: 50, bottom: 20, right: 20};
+  const width = 800 - margin.right - margin.left;
+  const height = 400 - margin.top - margin.bottom;
 
-  var agesMap = countAges(players);
-  var ageKVpairs = decryptMap(agesMap);
+	let x = d3.scaleLinear().range([0, width]);
+	let y = d3.scaleLinear().range([height, 0]);
 
-  var ageMaxHeight = Math.max.apply(Math, ageKVpairs.map(function(ageGroup){ return ageGroup.count; })) + 40;
+	let svg = d3.select("svg")
+							.attr("width", width + margin.left + margin.right)
+							.attr("height", height + margin.bottom + margin.top)
+							.append("g")
+							.attr("transform",
+          			"translate(" + margin.left + "," + margin.top + ")");
 
-  var barWidth = width/ageKVpairs.length;
+	x.domain(d3.extent(ageKVpairs, d =>  d.age ));
+	y.domain([0, d3.max(ageKVpairs, d => d.count)]);
 
-  var groups = d3.select(".chart")
-    .selectAll("g")
-    .data(ageKVpairs)
-    .enter()
-    .append("g")
-    .attr("transform", (d,i)=>{ return "translate("+i*barWidth+","+(height-(d.count*height/ageMaxHeight))+")" })
+	let bar = svg.selectAll('.bar')
+		.data(ageKVpairs).enter()
+		.append("rect")
+		.attr('class', 'bar')
+		.attr('x', d => x(d.age))
+		.attr('y', d => y(d.count))
+		.attr('width', width / ageKVpairs.length)
+		.attr('height', d => height - y(d.count));
 
-  groups.append("rect")
-        .attr("width", barWidth - 4)
-        .attr("height", (d)=>{ return d.count * height/ageMaxHeight })
-        .attr("fill", "red")
+	svg.append("g")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x));
 
-  groups.append("text")
-    .text(function(d) { return d.age; })
-    .attr("x", 2)
-    .attr("y", -4)
+	svg.append("g")
+		      .call(d3.axisLeft(y));
 
 }
 
 function decryptMap(agesMap){
   var kvpairs = []
   for (let key in agesMap){
+
     kvpairs.push({
-      age: key,
+      age: +key,
       count: agesMap[key]
     })
   }
@@ -130,9 +130,8 @@ function decryptMap(agesMap){
 function countAges(players){
   return players.map(player => player.player.Age)
   .reduce((map, age) => {
-    //let newMap = Object.assign({}, map)
-    map[age] = map[age] ? ++map[age] : 1
-    return map
+			map[age] = map[age] && age != undefined ? ++map[age] : 1
+	    return map
   }, {});
 }
 

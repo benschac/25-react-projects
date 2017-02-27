@@ -25,7 +25,6 @@ class App extends Component {
             throw Error('Something went wrong' + response.status);
           }
           response.json().then((data) => {
-            console.log('block fired');
             return Promise.resolve(data);
           });
         })
@@ -49,7 +48,6 @@ class App extends Component {
     );
   }
 }
-console.log(players);
 function filterPlayers(inputValue, players) {
   return players.filter((player) => {
     return player.player.FirstName.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1 ||

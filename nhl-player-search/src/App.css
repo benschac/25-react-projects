@@ -22,6 +22,10 @@ input {
 .chart {
   float: right;
   position: fixed;
-  top: 190px;
+  top: 60px;
   left: 23em;
+}
+
+.bar {
+  fill: purple;
 }
