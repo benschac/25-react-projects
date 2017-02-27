@@ -8,13 +8,11 @@ class List extends Component {
 
 	}
 	render() {
-		console.log(players)
 		return (
 		  <div>
 			<ul>
 				{this.props.players.map((player)=> {
 					return(
-						
 						<li key={player.player.ID}>{player.player.FirstName} {player.player.LastName} {player.player.Age}{player.team ? ", "+player.team.Name : ""}</li>
 					)
 				})}
