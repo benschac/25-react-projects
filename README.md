@@ -6,3 +6,7 @@ This project collection is based off of [25 React Projects](http://sean-smith.me
 ### Project - NHL Player Search (React + d3.js):
 This project was built with react.js + d3.js to filter players based on age count, firstname, lastname and team.  Taking advantage of React's lifecycle methods users see a realtime update of a histogram while updating input.
 ![demo of NHL-player-search](http://g.recordit.co/eptjReH5EF.gif)
+
+### Project - NHL Player Search (React + d3.js):
+This project was built with React.js + Marked to render markdown.  Taking advantage of React's lifecycle methods users see a realtime update of the DOM.
+![Markdown Generator](http://g.recordit.co/w1qaIy9rFn.gif)
