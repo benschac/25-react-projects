@@ -1,6 +1,6 @@
 # 25-react-projects
 
-This project collection is based off of [25 React Projects](http://sean-smith.me/assets/portfolio/25-react-projects/index.html). Projects are typically started with create-react-app.
+This project collection is based off of [25 React Projects](http://sean-smith.me/assets/portfolio/25-react-projects/index.html). Projects are typically started with [create-react-app](https://github.com/facebookincubator/create-react-app) & ES6 unless otherwise specified.  Please follow their documentation to start projects on your local machine.
 
 
 ### Project - NHL Player Search (React + d3.js):
