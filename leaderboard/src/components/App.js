@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import Board from './Board';
+import UsersTable from './UsersTable';
 import Footer from './Footer';
 import './App.css';
 
@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div className="leaderboard">
         <Header />
-        <Board />
+        <UsersTable />
         <Footer />
       </div>
     );
