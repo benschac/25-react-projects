@@ -17,7 +17,7 @@ class App extends Component {
     }
   }
   
-  componentWillMount() {
+  componentDidMount() {
     let headers = new Headers();
     let urlAlltime = `https://fcctop100.herokuapp.com/api/fccusers/top/alltime`;
     let urlrecent = `https://fcctop100.herokuapp.com/api/fccusers/top/recent`;
@@ -41,9 +41,12 @@ class App extends Component {
       .catch(err => {throw err});
     }
     
+    
     Promise.all([allTimeData, recentData])
       .then(res => {
-        console.log('alltime', res[0], 'recent', res[1]);
+        return res;
+      })
+      .then(res => {
         this.setState({
           allTimeUsers: res[0],
           recentUsers: res[1]
@@ -52,19 +55,11 @@ class App extends Component {
       .catch(err => {throw err});
   }
     
-  
-
   render() {
-  const listUsersAlltime = this.state.allTimeUsers.map((user) =>
-    <li>{user.username}</li>
-    );
+    
     return (
       <div className="leaderboard">
-        <ul>
-          <li>{listUsersAlltime}</li>
-        </ul>
         <Header />
-        <UsersTable />
         <Footer />
       </div>
     );
