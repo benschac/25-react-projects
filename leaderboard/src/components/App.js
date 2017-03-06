@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Header from './Header';
+import Board from './Board';
+import Footer from './Footer';
 import './App.css';
 
 class App extends Component {
@@ -10,38 +13,9 @@ class App extends Component {
   render() {
     return (
       <div className="leaderboard">
-        <div className="leaderboard-header">
-          <h2>Leaderboard</h2>
-        </div>
-        <table>
-        <tr>
-          <th>#</th>
-          <th>Camper Name</th>
-          <th>Points in past 30 days</th>
-          <th>All time points</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>benschac</td>
-          <td>400</td>
-          <td>1000</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>benschac</td>
-          <td>400</td>
-          <td>1000</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>benschac</td>
-          <td>400</td>
-          <td>1000</td>
-        </tr>
-        </table>
-        <footer>
-          <h3>By Benjamin Schachter</h3>
-        </footer>
+        <Header />
+        <Board />
+        <Footer />
       </div>
     );
   }
