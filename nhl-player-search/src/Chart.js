@@ -40,11 +40,10 @@ function updateChart(players) {
 	let y = d3.scaleLinear().range([height, 0]);
 
 
-	x.domain(d3.extent(filtered, d =>  d.age ));
+	x.domain(d3.extent(filtered, d =>  d.age));
 	y.domain([0, d3.max(filtered, d => d.count)]);
 
 	d3.select('.chart').remove();
-
 
 	let svg = d3.select("body").append('svg')
 							.attr('class', 'chart')
@@ -108,7 +107,7 @@ function initializeChart(players) {
 
 	svg.append("g")
 		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x));
+		.call(d3.axisBottom(x).ticks(ageKVpairs.length + 1));
 
 	svg.append("g")
 		      .call(d3.axisLeft(y));

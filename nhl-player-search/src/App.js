@@ -17,6 +17,7 @@ class App extends Component {
     this.setState({inputValue});
   }
   getData() {
+    // To-do figure out what's going on here.
     if (self.fetch) {
         // run my fetch request here
         let url = 'https://rawgit.com/benschac/ea8eacba1121711e2e542732e6d3e12d/raw/3eff20b38cd2a8f7c36c5f3e7f196442338a2eab/active-nhl-players.json';
