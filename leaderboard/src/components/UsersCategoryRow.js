@@ -8,6 +8,7 @@ class UsersCategoryRow extends Component {
             <thead>
             <tr>
                 <th>#</th>
+                <th>Image</th>
                 <th>Username</th>
                 <th onClick={this.props.sortByRecent}>Recent</th>
                 <th onClick={this.props.sortByAllTime}>AllTime</th>
