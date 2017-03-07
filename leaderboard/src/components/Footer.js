@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
+        <footer>
             <h3>By Benjamin Schachter</h3>
-        </div>
+        </footer>
     );
 };
 

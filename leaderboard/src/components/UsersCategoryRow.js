@@ -7,8 +7,7 @@ class UsersCategoryRow extends Component {
         return (
             <thead>
             <tr>
-                <th>#</th>
-                <th>Image</th>
+                <th>Rank</th>
                 <th>Username</th>
                 <th onClick={this.props.sortByRecent}>Recent</th>
                 <th onClick={this.props.sortByAllTime}>AllTime</th>

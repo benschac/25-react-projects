@@ -46,7 +46,6 @@ class App extends Component {
   }
   
   sortByRecent() {
-    console.log('hello');
     this.getData(this.props.url + 'recent')
   }
 
