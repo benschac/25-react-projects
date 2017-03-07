@@ -12,54 +12,57 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allTimeUsers: [],
-      recentUsers: []
+      data: []
     }
+    this.getData = this.getData.bind(this);
+    this.sortByAllTime = this.sortByAllTime.bind(this);
+    this.sortByRecent = this.sortByRecent.bind(this);
+  }
+
+  getData(url) {
+    let myHeaders = new Headers();
+
+    let options = { method: 'GET',
+                  headers: myHeaders,
+                  mode: 'cors',
+                  cache: 'default' };
+    fetch(url, options)
+    .then(res => {
+      
+      return res.json()
+    })
+    .then(json => {
+      
+      this.setState({
+        data: json
+      })
+    })
+    .catch(err => {throw err})
+
   }
   
   componentDidMount() {
-    let headers = new Headers();
-    let urlAlltime = `https://fcctop100.herokuapp.com/api/fccusers/top/alltime`;
-    let urlrecent = `https://fcctop100.herokuapp.com/api/fccusers/top/recent`;
-    let allTimeData = getData(urlAlltime);
-    let recentData = getData(urlrecent);
-    let options = {
-      method: 'GET',
-      headers,
-      mode: 'cors',
-      cache: 'default'
-    }
-
-    function getData(url) {
-      return fetch(url, options)
-      .then(val => {
-        return val.json();
-      })
-      .then(val => {
-         return val;
-      })
-      .catch(err => {throw err});
-    }
-    
-    
-    Promise.all([allTimeData, recentData])
-      .then(res => {
-        return res;
-      })
-      .then(res => {
-        this.setState({
-          allTimeUsers: res[0],
-          recentUsers: res[1]
-        })
-      })
-      .catch(err => {throw err});
+    this.getData(this.props.url + 'recent')
   }
-    
+  
+  sortByRecent() {
+    console.log('hello');
+    this.getData(this.props.url + 'recent')
+  }
+
+  sortByAllTime() {
+    this.getData(this.props.url + 'alltime')
+  }
+   
   render() {
-    
+        
     return (
       <div className="leaderboard">
         <Header />
+        <UsersTable 
+        data={this.state.data}
+        sortByAllTime={this.sortByAllTime}
+        sortByRecent={this.sortByRecent}/>
         <Footer />
       </div>
     );

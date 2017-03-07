@@ -1,17 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import UsersCategoryRow from './UsersCategoryRow';
 import UsersRow from './UsersRow';
 class UsersTable extends Component {
-    constructor() {
-        super();
-    }
-    render() {
 
+    render() {
         return (
         <div>
         <table>
-            <UsersCategoryRow />
-            <UsersRow allUsers={this.props.allUsers}/>
+            <UsersCategoryRow sortByAllTime={this.props.sortByAllTime}
+                            sortByRecent={this.props.sortByRecent}/>
+            <UsersRow data={this.props.data} />
         </table>     
         </div>
         );

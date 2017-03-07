@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const UsersCategoryRow = () => {
-    return (
-        <thead>
-    
-        <tr>
-            <th>#</th>
-            <th>Camper Name</th>
-            <th>Points in past 30 days</th>
-            <th>All time points</th>
-        </tr>
+class UsersCategoryRow extends Component {
 
-        </thead>
-    );
-};
+    render() {
+      
+        return (
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th onClick={this.props.sortByRecent}>Recent</th>
+                <th onClick={this.props.sortByAllTime}>AllTime</th>
+            </tr>
+            </thead>
+        );
+    }
+}
 
 export default UsersCategoryRow;
