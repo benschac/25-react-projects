@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Panel, ButtonGroup, Popover, Tooltip, Modal, OverlayTrigger,  } from 'react-bootstrap';
+import { Button, Panel, ButtonGroup, Popover, Tooltip, Modal, OverlayTrigger, FormGroup,
+        ControlLabel, FormControl, HelpBlock  } from 'react-bootstrap';
 import './App.css';
 
 const wellStyles = {maxWidth: 700, margin: '100px auto'};
@@ -9,13 +10,26 @@ class App extends Component {
     super();
     this.state = {
       open: false,
-      showModal: false
+      showModal: false,
+      value: ''
     }
     this.close = this.close.bind(this);
     this.open = this.open.bind(this);
   }
   getInitialState() {
-    return { showModal: false };
+    return { showModal: false,
+              value: '' };
+  }
+
+  getValidationState() {
+    const length = this.state.value.length;
+    if (length > 10) return 'success';
+    else if (length > 5) return 'warning';
+    else if (length > 0) return 'error';
+  }
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
   }
 
   close() {
@@ -75,30 +89,27 @@ class App extends Component {
 
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title><strong>Add a Recipe</strong></Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Text in a modal</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+            <form>
+              <FormGroup
+                controlId="formBasicText"
+                validationState={this.getValidationState()}
+              >
+                <ControlLabel>Working example with validation</ControlLabel>
+                <FormControl
+                  type="text"
+                  value={this.state.value}
+                  placeholder="Enter text"
+                  onChange={this.handleChange}
+                />
+                <FormControl.Feedback />
+                <HelpBlock>Validation is based on string length.</HelpBlock>
+              </FormGroup>
+            </form>
 
-            <h4>Popover in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={popover}><a href="#">popover</a></OverlayTrigger> here</p>
-
-            <h4>Tooltips in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={tooltip}><a href="#">tooltip</a></OverlayTrigger> here</p>
-
-            <hr />
-
-            <h4>Overflowing text to show scroll behavior</h4>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+            
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.close}>Close</Button>
