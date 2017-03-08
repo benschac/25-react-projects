@@ -97,21 +97,27 @@ class App extends Component {
                 controlId="formBasicText"
                 validationState={this.getValidationState()}
               >
-                <ControlLabel>Working example with validation</ControlLabel>
+                <ControlLabel>Recipe</ControlLabel>
                 <FormControl
                   type="text"
                   value={this.state.value}
-                  placeholder="Enter text"
+                  placeholder="Khao Soi"
                   onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
                 <HelpBlock>Validation is based on string length.</HelpBlock>
               </FormGroup>
+              <FormGroup controlId="formControlsTextarea">
+                <ControlLabel>Ingredients</ControlLabel>
+                <FormControl componentClass="textarea" placeholder="Condensed Milk, ..." />
+              </FormGroup>
+
             </form>
 
             
           </Modal.Body>
           <Modal.Footer>
+            <Button bsStyle="primary" onClick={this.close}>Add Recipe</Button>
             <Button onClick={this.close}>Close</Button>
           </Modal.Footer>
         </Modal>
