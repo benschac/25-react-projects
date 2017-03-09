@@ -7,10 +7,11 @@ const title = (
     );
 class Ingredients extends Component {
     render() {
+    
         return (
             <section className="well" style={wellStyles}>
             <Panel header={title} 
-                    onClick={ } 
+                    onClick={() => this.props.openPanel() } 
                     collapsible expanded={this.props.open}
                     bsStyle="success">
             <h3>Ingredients</h3>

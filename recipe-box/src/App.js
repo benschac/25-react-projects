@@ -17,7 +17,8 @@ class App extends Component {
       value: ''
     }
     this.close = this.close.bind(this);
-    this.open = this.open.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.openPanel = this.openPanel.bind(this);
   }
   getInitialState() {
     return { showModal: false,
@@ -32,8 +33,15 @@ class App extends Component {
     this.setState({ showModal: false });
   }
 
-  open() {
+  openModal() {
     this.setState({ showModal: true });
+  }
+
+  openPanel() {
+    this.setState(prevState => ({
+      open: !prevState.open
+    }))
+    
   }
 
   render() {
@@ -41,15 +49,16 @@ class App extends Component {
  
     return (
       <div className="app__container" style={wellStyles}>
-      <Ingredients open={this.state.open}/>
+      <Ingredients open={this.state.open}
+                   openPanel={this.openPanel}/>
         <Button
           bsStyle="primary"
           bsSize="large"
-          onClick={this.open}
+          onClick={this.openModal}
         >
           Add Recipe
         </Button>
-        <AddRecipe open={() => this.open()}
+        <AddRecipe openModal={() => this.openModal()}
                    close={() => this.close()}
                    handleChange={() => this.handleChange()}
                    getInitialState={() => this.getInitialState()}
