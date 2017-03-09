@@ -67,7 +67,8 @@ class App extends Component {
     this.setState({ showModal: true });
   }
 
-  openPanel() {
+  openPanel(e) {
+    console.log(e.target)
     this.setState(prevState => ({
       open: !prevState.open
     }))
@@ -79,7 +80,7 @@ class App extends Component {
  
     return (
       <div className="app__container" style={wellStyles}>
-      <Ingredients open={this.state.open}
+      <Ingredients
                    openPanel={this.openPanel}
                    title={this.state.title}
                    recipes={this.state.recipes}

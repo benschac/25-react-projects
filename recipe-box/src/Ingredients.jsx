@@ -4,14 +4,6 @@ const wellStyles = {maxWidth: 700, margin: '100px auto'};
 const title = (
       <h3>Panel title</h3>
     );  
-const IngredientsButtons = (e) => {
-        console.log(e)
-        {
-            e.recipe.map((item) => {
-                <h1>{item}</h1>
-            })
-        }
-    }
 
 class Ingredients extends Component {
     
@@ -20,15 +12,15 @@ class Ingredients extends Component {
     const recipes = this.props.recipes.map((recipe, index) => {
        
         return (
-            <Panel key={index} header={title} 
-                    onClick={() => this.props.openPanel() } 
+            <Panel key={index} header={recipe.title} 
+                    onClick={(e) => this.props.openPanel(e) } 
                     collapsible expanded={this.props.open}
                     bsStyle="success">
             <h3>Ingredients</h3>
             <ButtonGroup vertical block>
                 {
-                     recipe.items.map((item) => {
-                         return <Button>{item}</Button>
+                     recipe.items.map((item, index) => {
+                         return <Button key={index}>{item}</Button>
                          
                      })
                 }
