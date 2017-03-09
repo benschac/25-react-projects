@@ -2,9 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Button, Panel, ButtonGroup, Popover, Tooltip, Modal, OverlayTrigger, FormGroup,
         ControlLabel, FormControl, HelpBlock  } from 'react-bootstrap';
 
-const title = (
-    <h3>Panel title</h3>
-);
+    
 
 class AddRecipe extends Component {
     render() {
@@ -18,7 +16,7 @@ class AddRecipe extends Component {
                     <form>
                     <FormGroup
                         controlId="formBasicText"
-                        validationState={this.props.getValidationState()}
+        
                     >
                         <ControlLabel>Recipe</ControlLabel>
                         <FormControl

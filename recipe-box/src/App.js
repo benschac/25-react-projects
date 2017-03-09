@@ -3,6 +3,7 @@ import { Button, Panel, ButtonGroup, Popover, Tooltip, Modal, OverlayTrigger, Fo
         ControlLabel, FormControl, HelpBlock  } from 'react-bootstrap';
 import './App.css';
 import AddRecipe from './AddRecipe';
+import Ingredients from './Ingredients'
 
 
 const wellStyles = {maxWidth: 700, margin: '100px auto'};
@@ -23,13 +24,6 @@ class App extends Component {
               value: '' };
   }
 
-  getValidationState() {
-    const length = this.state.value.length;
-    if (length > 10) return 'success';
-    else if (length > 5) return 'warning';
-    else if (length > 0) return 'error';
-  }
-
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
@@ -43,29 +37,11 @@ class App extends Component {
   }
 
   render() {
-    const title = (
-      <h3>Panel title</h3>
-    );
+
  
     return (
       <div className="app__container" style={wellStyles}>
-       <section className="well" style={wellStyles}>
-        <Panel header={title} 
-                onClick={ ()=> this.setState({ open: !this.state.open })} 
-                collapsible expanded={this.state.open}
-                bsStyle="success">
-          <h3>Ingredients</h3>
-          <ButtonGroup vertical block>
-            <Button>Pumpkin Puree</Button>
-            <Button>Sweetened Condensed Milk</Button>
-            <Button>Eggs</Button>
-            <Button>Pumpkin Pie Spice</Button>
-            <Button>Pie Crust</Button>
-          </ButtonGroup>
-          <Button bsStyle="danger">Delete</Button>
-          <Button>Edit</Button>
-        </Panel>  
-       </section>
+      <Ingredients open={this.state.open}/>
         <Button
           bsStyle="primary"
           bsSize="large"
@@ -75,7 +51,11 @@ class App extends Component {
         </Button>
         <AddRecipe open={() => this.open()}
                    close={() => this.close()}
-                   showModal={this.}/>
+                   handleChange={() => this.handleChange()}
+                   getInitialState={() => this.getInitialState()}
+                   showModal={this.state.showModal}
+
+        />
       </div>
       
     );
