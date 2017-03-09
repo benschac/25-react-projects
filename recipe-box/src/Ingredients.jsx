@@ -18,7 +18,7 @@ class Ingredients extends Component {
     render() {
     
     const recipes = this.props.recipes.map((recipe, index) => {
-
+       
         return (
             <Panel key={index} header={title} 
                     onClick={() => this.props.openPanel() } 
@@ -26,10 +26,12 @@ class Ingredients extends Component {
                     bsStyle="success">
             <h3>Ingredients</h3>
             <ButtonGroup vertical block>
-                
-                <Button>
-                    something here
-                </Button>
+                {
+                     recipe.items.map((item) => {
+                         return <Button>{item}</Button>
+                         
+                     })
+                }
             </ButtonGroup>
             <Button bsStyle="danger">Delete</Button>
             <Button>Edit</Button>
