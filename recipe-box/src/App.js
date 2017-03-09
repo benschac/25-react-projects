@@ -13,12 +13,15 @@ class App extends Component {
     this.state = {
       open: false,
       showModal: false,
-      title: ''
+      title: '',
+      ingredients: []
     }
     this.close = this.close.bind(this);
     this.openModal = this.openModal.bind(this);
     this.openPanel = this.openPanel.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
+
+
   }
   getInitialState() {
     return { showModal: false,
@@ -26,8 +29,14 @@ class App extends Component {
   }
 
   handleTitleChange(e) {
-    console.log(e);
     this.setState({ title: e.target.value });
+  }
+
+  handleIngredientsChange(e) {
+    
+    let ingredientsArray = e.target.value.split(',');
+    console.log(ingredientsArray)
+    this.setState({ ingredients: e.target.value });
   }
 
   close() {
@@ -64,7 +73,7 @@ class App extends Component {
                    handleTitleChange={this.handleTitleChange}
                    getInitialState={() => this.getInitialState()}
                    showModal={this.state.showModal}
-
+                   handleIngredientsChange={this.handleIngredientsChange}
         />
       </div>
       

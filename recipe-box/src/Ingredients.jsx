@@ -6,7 +6,6 @@ const title = (
     );  
 class Ingredients extends Component {
     render() {
-    
         return (
             <section className="well" style={wellStyles}>
             <Panel header={title} 
