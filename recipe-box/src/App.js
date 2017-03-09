@@ -13,13 +13,14 @@ class App extends Component {
     this.state = {
       open: false,
       showModal: false,
-      title: '',
-      ingredients: []
+      title: 'Pizza',
+      ingredients: ["Cheese", "Tomato", "Dough"]
     }
     this.close = this.close.bind(this);
     this.openModal = this.openModal.bind(this);
     this.openPanel = this.openPanel.bind(this);
     this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
 
 
   }
@@ -60,7 +61,11 @@ class App extends Component {
     return (
       <div className="app__container" style={wellStyles}>
       <Ingredients open={this.state.open}
-                   openPanel={this.openPanel}/>
+                   openPanel={this.openPanel}
+                   title={this.state.title}
+                   ingredients={this.state.ingredients}
+                   />
+
         <Button
           bsStyle="primary"
           bsSize="large"
