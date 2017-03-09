@@ -11,10 +11,26 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      open: false,
-      showModal: false,
-      title: 'Pizza',
-      ingredients: ["Cheese", "Tomato", "Dough"]
+        recipes: [
+          {
+            open: false,
+            showModal: false,
+            title: 'Pizza',
+            items: ["Cheese", "Tomato", "Dough"]
+          },
+          {
+            open: false,
+            showModal: false,
+            title: 'PBJ',
+            items: ["Bread", "Peanut Butter", "Jelly"]
+          },
+          {
+            open: false,
+            showModal: false,
+            title: 'Ramen',
+            items: ["Egg", "Veggies", "Noodles", "Broth", "Mushrooms"]
+          }
+        ]
     }
     this.close = this.close.bind(this);
     this.openModal = this.openModal.bind(this);
@@ -35,9 +51,12 @@ class App extends Component {
 
   handleIngredientsChange(e) {
     
-    let ingredientsArray = e.target.value.split(',');
-    console.log(ingredientsArray)
-    this.setState({ ingredients: e.target.value });
+    // let ingredientsArray = e.target.value.split(',');
+    // console.log('ingredients', ingredientsArray)
+    // this.setState({ ingredients: e.target.value });
+
+    console.log('handleIngredientsChange', e.target.value)
+    this.close();
   }
 
   close() {
@@ -63,7 +82,7 @@ class App extends Component {
       <Ingredients open={this.state.open}
                    openPanel={this.openPanel}
                    title={this.state.title}
-                   ingredients={this.state.ingredients}
+                   recipes={this.state.recipes}
                    />
 
         <Button

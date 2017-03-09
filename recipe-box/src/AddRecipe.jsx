@@ -32,7 +32,7 @@ class AddRecipe extends Component {
                         <ControlLabel>Ingredients</ControlLabel>
                         <FormControl componentClass="textarea"
                                      placeholder="Condensed Milk, ..."
-                                     onChange={(e) => this.props.handleIngredientsChange(e)} />
+                        />
                     </FormGroup>
 
                     </form>
@@ -40,7 +40,7 @@ class AddRecipe extends Component {
                     
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button bsStyle="primary" onClick={this.props.close}>Add Recipe</Button>
+                    <Button bsStyle="primary" onClick={(e) => this.props.handleIngredientsChange(e)}>Add Recipe</Button>
                     <Button onClick={this.props.close}>Close</Button>
                 </Modal.Footer>
                 </Modal> 
