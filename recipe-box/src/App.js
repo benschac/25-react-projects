@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button  } from 'react-bootstrap';
 import './App.css';
-import AddRecipe from './AddRecipe';
+import AddRecipeModal from './AddRecipeModal';
 import Ingredients from './Ingredients'
 
 
@@ -38,7 +38,8 @@ class App extends Component {
     this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
-    this.editRecipe = this.editRecipe.bind(this);
+    this.addEditRecipe = this.addEditRecipe.bind(this);
+    
 
   }
   getInitialState() {
@@ -69,7 +70,6 @@ class App extends Component {
   }
 
   openPanel(e) {
- 
     this.setState(prevState => ({
       open: !prevState.open
     }))
@@ -85,10 +85,18 @@ class App extends Component {
     }
   }
 
-  editRecipe(item) {
-    console.log('from edit' + item)
-    this.openModal();
+
+  addEditRecipe(item) {
+    // Handle if we're editing a recipe.
+    if(item.target.innerHTML !== 'Add Recipe') {
+      console.log('from edit' + item)
+      this.openModal();
+    } else {
+      
+    }
   }
+
+
 
   render() {
 
@@ -100,23 +108,23 @@ class App extends Component {
                    title={this.state.title}
                    recipes={this.state.recipes}
                    deleteRecipe={this.deleteRecipe}
-                   editRecipe={this.editRecipe}
+                   addEditRecipe={this.addEditRecipe}
                    />
 
-        <Button
-          bsStyle="primary"
-          bsSize="large"
-          onClick={this.openModal}
-        >
-          Add Recipe
-        </Button>
-        <AddRecipe openModal={() => this.openModal()}
+        <AddRecipeModal openModal={() => this.openModal()}
                    close={() => this.close()}
                    handleTitleChange={this.handleTitleChange}
                    getInitialState={() => this.getInitialState()}
                    showModal={this.state.showModal}
                    handleIngredientsChange={this.handleIngredientsChange}
         />
+        <Button
+          bsStyle="primary"
+          bsSize="large"
+          onClick={this.addEditRecipe}
+        >
+          Add Recipe
+        </Button>
       </div>
       
     );
