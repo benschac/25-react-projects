@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Panel, ButtonGroup, Popover, Tooltip, Modal, OverlayTrigger, FormGroup,
-        ControlLabel, FormControl, HelpBlock  } from 'react-bootstrap';
+import { Button  } from 'react-bootstrap';
 import './App.css';
 import AddRecipe from './AddRecipe';
 import Ingredients from './Ingredients'
@@ -14,19 +13,21 @@ class App extends Component {
     this.state = {
       open: false,
       showModal: false,
-      value: ''
+      title: ''
     }
     this.close = this.close.bind(this);
     this.openModal = this.openModal.bind(this);
     this.openPanel = this.openPanel.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
   }
   getInitialState() {
     return { showModal: false,
               value: '' };
   }
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
+  handleTitleChange(e) {
+    console.log(e);
+    this.setState({ title: e.target.value });
   }
 
   close() {
@@ -60,7 +61,7 @@ class App extends Component {
         </Button>
         <AddRecipe openModal={() => this.openModal()}
                    close={() => this.close()}
-                   handleChange={() => this.handleChange()}
+                   handleTitleChange={this.handleTitleChange}
                    getInitialState={() => this.getInitialState()}
                    showModal={this.state.showModal}
 

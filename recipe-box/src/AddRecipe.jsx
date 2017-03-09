@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, Panel, ButtonGroup, Popover, Tooltip, Modal, OverlayTrigger, FormGroup,
+import { Button, Modal, FormGroup,
         ControlLabel, FormControl, HelpBlock  } from 'react-bootstrap';
 
     
@@ -23,7 +23,7 @@ class AddRecipe extends Component {
                         type="text"
                         value={this.props.value}
                         placeholder="Khao Soi"
-                        onChange={this.props.handleChange}
+                        onChange={(e) => this.props.handleTitleChange(e)}
                         />
                         <FormControl.Feedback />
                         <HelpBlock>Validation is based on string length.</HelpBlock>

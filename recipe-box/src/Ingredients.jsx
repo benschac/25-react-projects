@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, Panel, ButtonGroup, Popover, Tooltip, Modal, OverlayTrigger, FormGroup,
-        ControlLabel, FormControl, HelpBlock  } from 'react-bootstrap';
+import { Button, Panel, ButtonGroup } from 'react-bootstrap';
 const wellStyles = {maxWidth: 700, margin: '100px auto'};
 const title = (
       <h3>Panel title</h3>
-    );
+    );  
 class Ingredients extends Component {
     render() {
     
