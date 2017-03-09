@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button  } from 'react-bootstrap';
 import './App.css';
-import AddRecipeModal from './AddRecipeModal';
+import RecipeModal from './RecipeModal';
 import Ingredients from './Ingredients'
 
 
@@ -35,7 +35,6 @@ class App extends Component {
     this.close = this.close.bind(this);
     this.openModal = this.openModal.bind(this);
     this.openPanel = this.openPanel.bind(this);
-    this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
     this.addEditRecipe = this.addEditRecipe.bind(this);
@@ -51,14 +50,7 @@ class App extends Component {
     this.setState({ title: e.target.value });
   }
 
-  handleIngredientsChange(e) {
-    
-    // let ingredientsArray = e.target.value.split(',');
-    // console.log('ingredients', ingredientsArray)
-    // this.setState({ ingredients: e.target.value });
-
-    console.log('handleIngredientsChange', e.target.value)
-  }
+  
 
   close() {
     this.setState({ showModal: false });
@@ -86,8 +78,7 @@ class App extends Component {
 
 
   addEditRecipe(item) {
-
-      console.log('from edit' + item.target)
+    console.log('fired from addEditRecipe')
       this.openModal();
     
   }
@@ -105,15 +96,11 @@ class App extends Component {
                    recipes={this.state.recipes}
                    deleteRecipe={this.deleteRecipe}
                    addEditRecipe={this.addEditRecipe}
+                   openModal={this.openModal}
+
                    />
 
-        <AddRecipeModal openModal={() => this.openModal()}
-                   close={() => this.close()}
-                   handleTitleChange={this.handleTitleChange}
-                   getInitialState={() => this.getInitialState()}
-                   showModal={this.state.showModal}
-                   handleIngredientsChange={this.handleIngredientsChange}
-        />
+        
         <Button
           bsStyle="primary"
           bsSize="large"

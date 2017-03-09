@@ -31,7 +31,6 @@ class AddRecipe extends Component {
                         <ControlLabel>Ingredients</ControlLabel>
                         <FormControl componentClass="textarea"
                                      placeholder="Condensed Milk, ..."
-                                     onChange={(e) => this.props.handleIngredientsChange(e)}
                         />
                     </FormGroup>
 

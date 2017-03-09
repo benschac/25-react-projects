@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, Panel, ButtonGroup } from 'react-bootstrap';
+import RecipeModal from './RecipeModal';
 const wellStyles = {maxWidth: 700, margin: '100px auto'};
 const title = (
       <h3>Panel title</h3>
@@ -28,6 +29,12 @@ class Ingredients extends Component {
             <Button bsStyle="danger" 
                     onClick={() => this.props.deleteRecipe(recipe)}>Delete</Button>
             <Button onClick={() => this.props.addEditRecipe(recipe)}>Edit</Button>
+            
+            <RecipeModal openModal={() => this.props.openModal()}
+                   close={() => this.close()}
+                   getInitialState={() => this.getInitialState()}
+                   showModal={this.props.showModal}
+            />
             </Panel>
         );
         
