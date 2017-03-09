@@ -26,7 +26,6 @@ class AddRecipe extends Component {
                         onChange={(e) => this.props.handleTitleChange(e)}
                         />
                         <FormControl.Feedback />
-                        <HelpBlock>Validation is based on string length.</HelpBlock>
                     </FormGroup>
                     <FormGroup controlId="formControlsTextarea">
                         <ControlLabel>Ingredients</ControlLabel>

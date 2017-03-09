@@ -38,6 +38,7 @@ class App extends Component {
     this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.editRecipe = this.editRecipe.bind(this);
 
   }
   getInitialState() {
@@ -84,6 +85,11 @@ class App extends Component {
     }
   }
 
+  editRecipe(item) {
+    console.log('from edit' + item)
+    this.openModal();
+  }
+
   render() {
 
  
@@ -94,6 +100,7 @@ class App extends Component {
                    title={this.state.title}
                    recipes={this.state.recipes}
                    deleteRecipe={this.deleteRecipe}
+                   editRecipe={this.editRecipe}
                    />
 
         <Button

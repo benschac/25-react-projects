@@ -27,7 +27,7 @@ class Ingredients extends Component {
             </ButtonGroup>
             <Button bsStyle="danger" 
                     onClick={() => this.props.deleteRecipe(recipe)}>Delete</Button>
-            <Button>Edit</Button>
+            <Button onClick={() => this.props.editRecipe(recipe)}>Edit</Button>
             </Panel>
         );
         
