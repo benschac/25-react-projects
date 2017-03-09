@@ -37,7 +37,7 @@ class App extends Component {
     this.openPanel = this.openPanel.bind(this);
     this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
-
+    this.deleteRecipe = this.deleteRecipe.bind(this);
 
   }
   getInitialState() {
@@ -68,11 +68,20 @@ class App extends Component {
   }
 
   openPanel(e) {
-    console.log(e.target)
+ 
     this.setState(prevState => ({
       open: !prevState.open
     }))
     
+  }
+
+  deleteRecipe(item) {
+    
+    const newState = this.state.recipes;
+    if (newState.indexOf(item) > -1) {
+      newState.splice(newState.indexOf(item), 1);
+      this.setState({recipes: newState})
+    }
   }
 
   render() {
@@ -84,6 +93,7 @@ class App extends Component {
                    openPanel={this.openPanel}
                    title={this.state.title}
                    recipes={this.state.recipes}
+                   deleteRecipe={this.deleteRecipe}
                    />
 
         <Button
