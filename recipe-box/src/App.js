@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Panel, ButtonGroup, Popover, Tooltip, Modal, OverlayTrigger, FormGroup,
         ControlLabel, FormControl, HelpBlock  } from 'react-bootstrap';
 import './App.css';
+import AddRecipe from './AddRecipe';
+
 
 const wellStyles = {maxWidth: 700, margin: '100px auto'};
 
@@ -44,23 +46,8 @@ class App extends Component {
     const title = (
       <h3>Panel title</h3>
     );
-
-    const popover = (
-      <Popover id="modal-popover" title="popover">
-        very popover. such engagement
-      </Popover>
-    );
-    const tooltip = (
-      <Tooltip id="modal-tooltip">
-        wow.
-      </Tooltip>
-    );
-
-    
+ 
     return (
-      
-      
-    
       <div className="app__container" style={wellStyles}>
        <section className="well" style={wellStyles}>
         <Panel header={title} 
@@ -86,41 +73,9 @@ class App extends Component {
         >
           Add Recipe
         </Button>
-
-        <Modal show={this.state.showModal} onHide={this.close}>
-          <Modal.Header closeButton>
-            <Modal.Title><strong>Add a Recipe</strong></Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <form>
-              <FormGroup
-                controlId="formBasicText"
-                validationState={this.getValidationState()}
-              >
-                <ControlLabel>Recipe</ControlLabel>
-                <FormControl
-                  type="text"
-                  value={this.state.value}
-                  placeholder="Khao Soi"
-                  onChange={this.handleChange}
-                />
-                <FormControl.Feedback />
-                <HelpBlock>Validation is based on string length.</HelpBlock>
-              </FormGroup>
-              <FormGroup controlId="formControlsTextarea">
-                <ControlLabel>Ingredients</ControlLabel>
-                <FormControl componentClass="textarea" placeholder="Condensed Milk, ..." />
-              </FormGroup>
-
-            </form>
-
-            
-          </Modal.Body>
-          <Modal.Footer>
-            <Button bsStyle="primary" onClick={this.close}>Add Recipe</Button>
-            <Button onClick={this.close}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+        <AddRecipe open={() => this.open()}
+                   close={() => this.close()}
+                   showModal={this.}/>
       </div>
       
     );
