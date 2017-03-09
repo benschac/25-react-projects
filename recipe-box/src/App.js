@@ -58,7 +58,6 @@ class App extends Component {
     // this.setState({ ingredients: e.target.value });
 
     console.log('handleIngredientsChange', e.target.value)
-    this.close();
   }
 
   close() {
@@ -87,13 +86,10 @@ class App extends Component {
 
 
   addEditRecipe(item) {
-    // Handle if we're editing a recipe.
-    if(item.target.innerHTML !== 'Add Recipe') {
-      console.log('from edit' + item)
+
+      console.log('from edit' + item.target)
       this.openModal();
-    } else {
-      
-    }
+    
   }
 
 
@@ -121,7 +117,7 @@ class App extends Component {
         <Button
           bsStyle="primary"
           bsSize="large"
-          onClick={this.addEditRecipe}
+          onClick={this.openModal}
         >
           Add Recipe
         </Button>
