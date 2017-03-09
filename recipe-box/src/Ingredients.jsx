@@ -15,7 +15,7 @@ class Ingredients extends Component {
         console.log(this.props.ingredients)
         return (
             <section className="well" style={wellStyles}>
-            <Panel header={title} 
+            <Panel header={this.props.title} 
                     onClick={() => this.props.openPanel() } 
                     collapsible expanded={this.props.open}
                     bsStyle="success">
