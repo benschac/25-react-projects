@@ -39,7 +39,7 @@ class AddRecipe extends Component {
                     
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button bsStyle="primary" onClick={(e) => this.props.addEditRecipe(e)}>Add Recipe</Button>
+                    <Button bsStyle="primary" onClick={() => this.props.addEditRecipe()}>Add Recipe</Button>
                     <Button onClick={this.props.close}>Close</Button>
                 </Modal.Footer>
                 </Modal> 

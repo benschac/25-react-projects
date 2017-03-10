@@ -38,8 +38,6 @@ class App extends Component {
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
     this.addEditRecipe = this.addEditRecipe.bind(this);
-    
-
   }
   getInitialState() {
     return { showModal: false,
@@ -60,7 +58,7 @@ class App extends Component {
     this.setState({ showModal: true });
   }
 
-  openPanel(e) {
+  openPanel() {
     this.setState(prevState => ({
       open: !prevState.open
     }))
@@ -77,13 +75,15 @@ class App extends Component {
   }
 
 
-  addEditRecipe(item) {
-    console.log('fired from addEditRecipe')
-      this.openModal();
-    
+  addEditRecipe(recipe) {
+
+    console.log('fired from addEditRecipe', recipe.items)
+    if(recipe.items.length < 1) {
+      this.openModal()
+          console.log('fired from addEditRecipe', recipe.items)
+
+    }
   }
-
-
 
   render() {
 

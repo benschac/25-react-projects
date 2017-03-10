@@ -28,12 +28,13 @@ class Ingredients extends Component {
             </ButtonGroup>
             <Button bsStyle="danger" 
                     onClick={() => this.props.deleteRecipe(recipe)}>Delete</Button>
-            <Button onClick={() => this.props.addEditRecipe(recipe)}>Edit</Button>
+            <Button onClick={() => this.props.openModal()}>Edit</Button>
             
             <RecipeModal openModal={() => this.props.openModal()}
-                   close={() => this.close()}
-                   getInitialState={() => this.getInitialState()}
+                   close={() => this.props.close()}
+                   getInitialState={() => this.props.getInitialState()}
                    showModal={this.props.showModal}
+                   addEditRecipe={this.props.addEditRecipe}
             />
             </Panel>
         );
