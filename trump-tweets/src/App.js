@@ -55,7 +55,7 @@ class App extends Component {
         }
         </div>
         <button onClick={(this.handleQuoteClick)}>button</button>
-        <a target="_blank" href={this.state.url}><button>Tweet</button></a>     
+        <a target="_blank"><button>Tweet</button></a>     
       </div>
     );
   }
