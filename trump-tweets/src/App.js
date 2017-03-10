@@ -1,18 +1,61 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+
+
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      quote: '',
+      url: ''
+    }
+    this.handleQuoteClick = this.handleQuoteClick.bind(this);
+    this.handleClickTweet = this.handleClickTweet.bind(this);
+  }
+
+
+  handleQuoteClick() {
+    let url = "https://api.whatdoestrumpthink.com/api/v1/quotes/random";
+    let headers = new Headers();
+    let options = {
+               method: 'GET',
+               headers,
+               mode: 'cors',
+               cache: 'default'
+              }
+
+    
+    fetch(url, options)
+    .then(res => {
+      return res.json()
+    })
+    .then(json => {
+      this.setState({quote: json.message})
+    })
+    .catch(err => {throw err});
+  }
+
+  handleClickTweet() {
+    let quote = this.state.quote;
+    let newstr = quote.replace(/ /i, '+');
+    quote = quote.replace(/ /g, "%20")
+    return `https://twitter.com/intent/tweet?text=${quote}`;
+  }
+
+
   render() {
+
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className="app">
+        <div className="quote">
+        {
+          this.state.quote
+        }
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <button onClick={(this.handleQuoteClick)}>button</button>
+        <a target="_blank" href={this.state.url}><button>Tweet</button></a>     
       </div>
     );
   }

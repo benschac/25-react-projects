@@ -77,7 +77,7 @@ class App extends Component {
 
   addEditRecipe(recipe) {
 
-    console.log('fired from addEditRecipe', recipe.items)
+    console.log('fired from addEditRecipe', recipe)
     if(recipe.items.length < 1) {
       this.openModal()
           console.log('fired from addEditRecipe', recipe.items)

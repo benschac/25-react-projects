@@ -31,10 +31,10 @@ class Ingredients extends Component {
             <Button onClick={() => this.props.openModal()}>Edit</Button>
             
             <RecipeModal openModal={() => this.props.openModal()}
-                   close={() => this.props.close()}
-                   getInitialState={() => this.props.getInitialState()}
-                   showModal={this.props.showModal}
-                   addEditRecipe={this.props.addEditRecipe}
+                        close={() => this.props.close()}
+                        getInitialState={() => this.props.getInitialState()}
+                        showModal={this.props.showModal}
+                        addEditRecipe={() => this.props.addEditRecipe(recipe)}
             />
             </Panel>
         );
