@@ -1,12 +1,32 @@
-import React, { Component, PropTypes } from 'react';
-import { Button, Panel, ButtonGroup } from 'react-bootstrap';
-import RecipeModal from './RecipeModal';
+import React, { Component } from 'react';
+import { Button, Panel, ButtonGroup, Modal } from 'react-bootstrap';
+
 const wellStyles = {maxWidth: 700, margin: '100px auto'};
-const title = (
-      <h3>Panel title</h3>
-    );  
 
 class Ingredients extends Component {
+    constructor() {
+        super()
+        this.state = {
+            showModal: false
+        }
+
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+    }
+
+    getInitialState() {
+        return {
+            showModal: false
+        }
+    }
+
+    close() {
+    this.setState({ showModal: false });
+  }
+
+  open() {
+    this.setState({ showModal: true });
+  }
     
     render() {
     
@@ -17,40 +37,44 @@ class Ingredients extends Component {
                     onClick={(e) => this.props.openPanel(e) } 
                     collapsible expanded={this.props.open}
                     bsStyle="success">
-            <h3>Ingredients</h3>
-            <ButtonGroup vertical block>
-                {
-                     recipe.items.map((item, index) => {
-                         return <Button key={index}>{item}</Button>
-                         
-                     })
-                }
-            </ButtonGroup>
+                    <h3>Ingredients</h3>
+                    <ButtonGroup vertical block>
+                        {
+                            recipe.items.map((item, index) => {
+                                return <Button key={index}>{item}</Button>
+                                
+                            })
+                        }
+                    </ButtonGroup>
+
+            <Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <h4>Text in a modal</h4>
+                
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={this.close}>Close</Button>
+            </Modal.Footer>
+            </Modal>
+            
             <Button bsStyle="danger" 
                     onClick={() => this.props.deleteRecipe(recipe)}>Delete</Button>
-            <Button onClick={() => this.props.openModal()}>Edit</Button>
+            <Button onClick={this.open}>Edit</Button>
             
-            <RecipeModal openModal={() => this.props.openModal()}
-                        close={() => this.props.close()}
-                        getInitialState={() => this.props.getInitialState()}
-                        showModal={this.props.showModal}
-                        addEditRecipe={() => this.props.addEditRecipe(recipe)}
-            />
+            
             </Panel>
         );
         
     })
         return (
-            <section className="well" style={wellStyles}>
+        <section className="well" style={wellStyles}>
             {recipes}
-            
         </section>
         );
     }
 }
-
-Ingredients.propTypes = {
-
-};
 
 export default Ingredients;

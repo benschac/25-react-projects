@@ -11,33 +11,30 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+        showModal: false,
         recipes: [
           {
             open: false,
-            showModal: false,
             title: 'Pizza',
             items: ["Cheese", "Tomato", "Dough"]
           },
           {
             open: false,
-            showModal: false,
             title: 'PBJ',
             items: ["Bread", "Peanut Butter", "Jelly"]
           },
           {
             open: false,
-            showModal: false,
             title: 'Ramen',
             items: ["Egg", "Veggies", "Noodles", "Broth", "Mushrooms"]
           }
         ]
     }
     this.close = this.close.bind(this);
-    this.openModal = this.openModal.bind(this);
     this.openPanel = this.openPanel.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
-    this.addEditRecipe = this.addEditRecipe.bind(this);
+   3
   }
   getInitialState() {
     return { showModal: false,
@@ -48,14 +45,8 @@ class App extends Component {
     this.setState({ title: e.target.value });
   }
 
-  
-
   close() {
     this.setState({ showModal: false });
-  }
-
-  openModal() {
-    this.setState({ showModal: true });
   }
 
   openPanel() {
@@ -75,16 +66,6 @@ class App extends Component {
   }
 
 
-  addEditRecipe(recipe) {
-
-    console.log('fired from addEditRecipe', recipe)
-    if(recipe.items.length < 1) {
-      this.openModal()
-          console.log('fired from addEditRecipe', recipe.items)
-
-    }
-  }
-
   render() {
 
  
@@ -95,9 +76,7 @@ class App extends Component {
                    title={this.state.title}
                    recipes={this.state.recipes}
                    deleteRecipe={this.deleteRecipe}
-                   addEditRecipe={this.addEditRecipe}
-                   openModal={this.openModal}
-
+                   
                    />
 
         
@@ -108,6 +87,13 @@ class App extends Component {
         >
           Add Recipe
         </Button>
+
+        <RecipeModal openModal={this.props.openModal}
+                        close={this.props.close}
+                        getInitialState={this.props.getInitialState}
+                        showModal={this.props.showModal}
+        
+            />
       </div>
       
     );

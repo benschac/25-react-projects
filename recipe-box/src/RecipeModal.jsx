@@ -1,10 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Button, Modal, FormGroup,
-        ControlLabel, FormControl, HelpBlock  } from 'react-bootstrap';
+        ControlLabel, FormControl  } from 'react-bootstrap';
 
     
 
 class AddRecipe extends Component {
+    
     render() {
         return (
             <div>
