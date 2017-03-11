@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Button  } from 'react-bootstrap';
 import './App.css';
-import RecipeModal from './RecipeModal';
-import Ingredients from './Ingredients'
+
 
 
 const wellStyles = {maxWidth: 700, margin: '100px auto'};
@@ -11,91 +9,108 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-        modal: false,
+       value: '',
         recipes: {
           recipe1: {
-            open: false,
             title: 'Pizza',
             items: ["Cheese", "Tomato", "Dough"]
           },
           recipe2: {
-            open: false,
             title: 'PBJ',
             items: ["Bread", "Peanut Butter", "Jelly"]
           },
           recipe3: {
-            open: false,
             title: 'Ramen',
             items: ["Egg", "Veggies", "Noodles", "Broth", "Mushrooms"]
           },
           recipe4: {
-            open: false,
             title: 'Burger',
             items: ["Buns", "Beef Patty", "Tomato", "Lettuce", "Onions"]
           }
         }
     }
-
-    this.addRecipe = this.addRecipe.bind(this);
-    this.deleteRecipe = this.deleteRecipe.bind(this);
-    this.editRecipe = this.editRecipe.bind(this);
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
     
   }
 
   // Create recipe!
-  addRecipe(recipe) {
+  addRecipe = (recipe) =>  {
     const recipes = {...this.state.recipes};
     const last = Object.keys(recipes).length + 1;
     recipes[`recipe${last}`] = recipe; 
     this.setState({recipes});
   }
 
+  createRecipe = (event) => {
+    event.preventDefault();
+    let items = this.textarea.value.trim().split(',');
+
+    const recipe = {
+      title: this.title.value,
+      items
+    }
+    
+    console.log(recipe);
+    this.addRecipe(recipe);
+  }
+
   // Delete Recipe!
-  deleteRecipe(recipe) {
+  deleteRecipe = (recipe) => {
     const recipes = {...this.state.recipes};
-    recipes[recipe] = null;
+    delete recipes[recipe];
     this.setState({recipes});
   }
 
   // Edit Recipe!
-  editRecipe(key, recipe) {
+  editRecipe = (key, recipe) => {
     const recipes = {...this.state.recipes};
     recipes[key] = recipe;
     this.setState({recipes});
   }
 
-
-  closeModal() {
-    this.setState({ modal: false });
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state.value);
   }
 
-  openModal() {
-    this.setState({ modal: true });
-  }
-
-  getInitialState() {
-    return {
-      modal: false,
-    }
+  handleTitleChange = (key, event) => {
+    let recipes = {...this.state.recipes}
+    recipes[key].title = event.target.value;
+    this.setState({recipes});
   }
 
   render() {
-
+    let recipes = {...this.state.recipes};
  
     return (
       <div className="app__container" style={wellStyles}>
-
-      <RecipeModal open={this.openModal}
-                   close={this.closeModal}
-                   modal={this.state.modal}
-      />
-      <Button
-            bsStyle="primary"
-            bsSize="large"
-            onClick={this.openModal}
-      >Add Recipe</Button>
+      {
+        Object.keys(recipes).map((recipe, index) => {
+          return (
+            <div>
+              <h2 key={recipe}
+                  onClick={() => console.log(recipes[recipe].title)}>
+                  {recipes[recipe].title}</h2>
+              <ul>
+                {
+                  recipes[recipe].items.map((item, index) => {
+                    return <li key={index}>{item}</li>
+                  })
+                }
+              </ul> 
+              <button onClick={() => this.deleteRecipe(recipe)} >Delete</button> 
+            </div>
+            
+            )
+        }
+        )
+      }
+      <form ref={(input) => this.form = input }onSubmit={this.createRecipe}>
+        <label>Title</label>
+        <input ref={(input) => this.title = input }/>
+        <label>Ingredients</label>
+        <textarea ref={(input) => this.textarea = input}></textarea>
+        <button type="submit" value="Submit" >Submit</button>
+      </form>
       </div>
       
     );
