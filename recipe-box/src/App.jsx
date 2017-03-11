@@ -75,12 +75,13 @@ class App extends Component {
     console.log(this.state.value);
   }
 
-  handleTitleChange = (key, event) => {
+  editToggle = (key) => {
+    console.log('fired')
     let recipes = {...this.state.recipes}
-    recipes[key].title = event.target.value;
+    recipes[key].edit = !recipes[key].edit
+
     this.setState({recipes});
   }
-
   render() {
     let recipes = {...this.state.recipes};
  
@@ -101,11 +102,22 @@ class App extends Component {
                 }
               </ul> 
               <button onClick={() => this.deleteRecipe(recipe)} >Delete</button>
-              <button>Edit</button> 
+              <button onClick={() => this.editToggle(recipe)}>Edit</button>
+              {
+                recipes[recipe].edit ?
+              <form ref={(input) => this.form = input }onSubmit={this.createRecipe}>
+                <label>Title</label>
+                <input ref={(input) => this.title = input }/>
+                <label>Ingredients</label>
+                <textarea ref={(input) => this.textarea = input}></textarea>
+                <button type="submit" value="Submit" >Submit</button>
+            </form> :
+              null
+
+              } 
             </div>
-            
             )
-        }
+          }
         )
       }
       <form ref={(input) => this.form = input }onSubmit={this.createRecipe}>
