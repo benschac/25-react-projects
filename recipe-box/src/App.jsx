@@ -39,6 +39,8 @@ class App extends Component {
     this.addRecipe = this.addRecipe.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
     this.editRecipe = this.editRecipe.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     
   }
 
@@ -56,7 +58,7 @@ class App extends Component {
     recipes[recipe] = null;
     this.setState({recipes});
   }
-  
+
   // Edit Recipe!
   editRecipe(key, recipe) {
     const recipes = {...this.state.recipes};
@@ -64,8 +66,19 @@ class App extends Component {
     this.setState({recipes});
   }
 
-  getInitialState() {
 
+  closeModal() {
+    this.setState({ modal: false });
+  }
+
+  openModal() {
+    this.setState({ modal: true });
+  }
+
+  getInitialState() {
+    return {
+      modal: false,
+    }
   }
 
   render() {
@@ -73,7 +86,16 @@ class App extends Component {
  
     return (
       <div className="app__container" style={wellStyles}>
-      
+
+      <RecipeModal open={this.openModal}
+                   close={this.closeModal}
+                   modal={this.state.modal}
+      />
+      <Button
+            bsStyle="primary"
+            bsSize="large"
+            onClick={this.openModal}
+      >Add Recipe</Button>
       </div>
       
     );
