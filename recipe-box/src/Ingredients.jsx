@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Panel, ButtonGroup, Modal } from 'react-bootstrap';
+import { Button, Panel, ButtonGroup, Modal, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 
 const wellStyles = {maxWidth: 700, margin: '100px auto'};
 
@@ -12,6 +12,7 @@ class Ingredients extends Component {
 
         this.open = this.open.bind(this);
         this.close = this.close.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     getInitialState() {
@@ -27,11 +28,14 @@ class Ingredients extends Component {
   open() {
     this.setState({ showModal: true });
   }
+
+  handleChange(e) {
+    console.log(e.target.value)
+  }
     
     render() {
-    
+
     const recipes = this.props.recipes.map((recipe, index) => {
-       
         return (
             <Panel key={index} header={recipe.title} 
                     onClick={(e) => this.props.openPanel(e) } 
@@ -49,11 +53,21 @@ class Ingredients extends Component {
 
             <Modal show={this.state.showModal} onHide={this.close}>
             <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Edit Recipe</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <h4>Text in a modal</h4>
-                
+                <form>
+                    <FormControl
+                        type="text"
+                        placeholder="Enter text"
+                        onChange={(e) => this.handleChange(e)}
+                    />
+                    <FormGroup controlId="formControlsTextarea">
+                    <ControlLabel>Textarea</ControlLabel>
+                    <FormControl componentClass="textarea" placeholder="textarea" />
+                    </FormGroup>
+                </form>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={this.close}>Close</Button>
