@@ -12,18 +12,22 @@ class App extends Component {
        value: '',
         recipes: {
           recipe1: {
+            edit: false,
             title: 'Pizza',
             items: ["Cheese", "Tomato", "Dough"]
           },
           recipe2: {
+            edit: false,
             title: 'PBJ',
             items: ["Bread", "Peanut Butter", "Jelly"]
           },
           recipe3: {
+            edit: false,
             title: 'Ramen',
             items: ["Egg", "Veggies", "Noodles", "Broth", "Mushrooms"]
           },
           recipe4: {
+            edit: false,
             title: 'Burger',
             items: ["Buns", "Beef Patty", "Tomato", "Lettuce", "Onions"]
           }
@@ -49,7 +53,6 @@ class App extends Component {
       items
     }
     
-    console.log(recipe);
     this.addRecipe(recipe);
   }
 
@@ -97,7 +100,8 @@ class App extends Component {
                   })
                 }
               </ul> 
-              <button onClick={() => this.deleteRecipe(recipe)} >Delete</button> 
+              <button onClick={() => this.deleteRecipe(recipe)} >Delete</button>
+              <button>Edit</button> 
             </div>
             
             )
