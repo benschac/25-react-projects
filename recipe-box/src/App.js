@@ -49,7 +49,8 @@ class App extends Component {
     this.setState({ showModal: false });
   }
 
-  openPanel() {
+  openPanel(e) {
+    console.log(e.target.innerHTML)
     this.setState(prevState => ({
       open: !prevState.open
     }))

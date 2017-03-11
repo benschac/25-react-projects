@@ -51,6 +51,20 @@ class Ingredients extends Component {
                         }
                     </ButtonGroup>
 
+            
+            
+            <Button bsStyle="danger" 
+                    onClick={() => this.props.deleteRecipe(recipe)}>Delete</Button>
+            <Button onClick={this.open}>Edit</Button>
+            
+            
+            </Panel>
+        );
+        
+    })
+        return (
+        <section className="well" style={wellStyles}>
+            {recipes}
             <Modal show={this.state.showModal} onHide={this.close}>
             <Modal.Header closeButton>
                 <Modal.Title>Edit Recipe</Modal.Title>
@@ -73,19 +87,6 @@ class Ingredients extends Component {
                 <Button onClick={this.close}>Close</Button>
             </Modal.Footer>
             </Modal>
-            
-            <Button bsStyle="danger" 
-                    onClick={() => this.props.deleteRecipe(recipe)}>Delete</Button>
-            <Button onClick={this.open}>Edit</Button>
-            
-            
-            </Panel>
-        );
-        
-    })
-        return (
-        <section className="well" style={wellStyles}>
-            {recipes}
         </section>
         );
     }
