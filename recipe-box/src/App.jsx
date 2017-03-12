@@ -64,22 +64,26 @@ class App extends Component {
   }
 
   // Edit Recipe!
-  editRecipe = (key, recipe) => {
-    const recipes = {...this.state.recipes};
-    recipes[key] = recipe;
-    this.setState({recipes});
-  }
+  editRecipe = (event, key) => {
+    console.log(key)
+    event.preventDefault();
+    const recipes = {...this.state.recipes}
+    console.log(this.editTitle.value, this.editTextarea.value.split(','))
+    recipes[key] = {
+      title: this.editTitle.value,
+      items: this.editTextarea.value.split(',')
+    }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.state.value);
+
+
+    this.setState({recipes})
+
   }
 
   editToggle = (key) => {
-    console.log('fired')
     let recipes = {...this.state.recipes}
     recipes[key].edit = !recipes[key].edit
-
+    
     this.setState({recipes});
   }
   render() {
@@ -96,6 +100,7 @@ class App extends Component {
                   {recipes[recipe].title}</h2>
               <ul>
                 {
+                  
                   recipes[recipe].items.map((item, index) => {
                     return <li key={index}>{item}</li>
                   })
@@ -105,12 +110,12 @@ class App extends Component {
               <button onClick={() => this.editToggle(recipe)}>Edit</button>
               {
                 recipes[recipe].edit ?
-              <form ref={(input) => this.form = input }onSubmit={this.createRecipe}>
+              <form ref={(input) => this.editForm = input } onSubmit={(e) => this.editRecipe(e, recipe)}>
                 <label>Title</label>
-                <input ref={(input) => this.title = input }/>
+                <input defaultValue={recipes[recipe].title} ref={(input) => this.editTitle = input }/>
                 <label>Ingredients</label>
-                <textarea ref={(input) => this.textarea = input}></textarea>
-                <button type="submit" value="Submit" >Submit</button>
+                <textarea defaultValue={recipes[recipe].items.join(',')} ref={(input) => this.editTextarea = input}></textarea>
+                <button type="submit" value="Submit">Submit</button>
             </form> :
               null
 
