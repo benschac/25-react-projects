@@ -102,16 +102,23 @@ class App extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     if(storageAvailable('localStorage')) {
-      localStorage.setItem('recipes', JSON.stringify(nextState.recipes))
+      const ref = localStorage.setItem('recipes', JSON.stringify(nextState.recipes))
+      
     } else {
       console.error('Your browser doesn\'t support local storage');
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if(storageAvailable('localStorage')) {
-      
-      localStorage.setItem('recipes', JSON.stringify(this.state.recipes))
+        const localRef = localStorage.getItem('recipes', JSON.stringify(this.state.recipes))
+        console.log(localRef)
+        if(localRef) {
+          this.setState({
+            recipes: JSON.parse(localRef)
+          })
+        }
+        
     } else {
       console.error('Your browser doesn\'t support local storage');
     }
