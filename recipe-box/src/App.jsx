@@ -3,7 +3,18 @@ import './App.css';
 
 
 
-const wellStyles = {maxWidth: 700, margin: '100px auto'};
+function storageAvailable(type) {
+	try {
+		var storage = window[type],
+			x = '__storage_test__';
+		storage.setItem(x, x);
+		storage.removeItem(x);
+		return true;
+	}
+	catch(e) {
+		return false;
+	}
+}
 
 class App extends Component {
   constructor() {
@@ -38,9 +49,11 @@ class App extends Component {
 
   // Create recipe!
   addRecipe = (recipe) =>  {
+    // To do time stamp so old state doesn't got over written.
     const recipes = {...this.state.recipes};
-    const last = Object.keys(recipes).length + 1;
+    const last = Date.now()
     recipes[`recipe${last}`] = recipe; 
+    console.log(last)
     this.setState({recipes});
   }
 
@@ -86,11 +99,29 @@ class App extends Component {
     
     this.setState({recipes});
   }
+
+  componentWillUpdate(nextProps, nextState) {
+    if(storageAvailable('localStorage')) {
+      localStorage.setItem('recipes', JSON.stringify(nextState.recipes))
+    } else {
+      console.error('Your browser doesn\'t support local storage');
+    }
+  }
+
+  componentDidMount() {
+    if(storageAvailable('localStorage')) {
+      
+      localStorage.setItem('recipes', JSON.stringify(this.state.recipes))
+    } else {
+      console.error('Your browser doesn\'t support local storage');
+    }
+    
+  }
   render() {
     let recipes = {...this.state.recipes};
  
     return (
-      <div className="app__container" style={wellStyles}>
+      <div className="app__container">
       {
         Object.keys(recipes).map((recipe, index) => {
           return (
