@@ -1,0 +1,21 @@
+
+
+.app__container {
+    max-width: 60%;
+    margin: 0 auto;
+    border: 2px dotted black;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+li {
+    list-style: none;
+}
+
+

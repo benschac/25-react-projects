@@ -123,11 +123,12 @@ class App extends Component {
  
     return (
       <div className="app__container">
+        <h1>Recipe Box</h1>
       {
         Object.keys(recipes).map((recipe, index) => {
           return (
             <div>
-              <h2 key={recipe}>
+              <h2 onClick={() => console.log('clicked')} key={recipe}>
                   {recipes[recipe].title}</h2>
               <ul>
                 {
@@ -142,10 +143,16 @@ class App extends Component {
               {
                 recipes[recipe].edit ?
               <form ref={(input) => this.editForm = input } onSubmit={(e) => this.editRecipe(e, recipe)}>
-                <label>Title</label>
-                <input defaultValue={recipes[recipe].title} ref={(input) => this.editTitle = input }/>
-                <label>Ingredients</label>
+                <div>
+                  <label>Title</label>
+                  <br />
+                  <input defaultValue={recipes[recipe].title} ref={(input) => this.editTitle = input }/>
+                </div>
+                <div>
+                  <label>Ingredients</label>
+                  <br />
                 <textarea defaultValue={recipes[recipe].items.join(',')} ref={(input) => this.editTextarea = input}></textarea>
+                </div>
                 <button type="submit" value="Submit">Submit</button>
             </form> :
               null
