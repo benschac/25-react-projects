@@ -48,7 +48,6 @@ class App extends Component {
 
   // Create recipe!
   addRecipe = (recipe) =>  {
-    // To do time stamp so old state doesn't got over written.
     const recipes = {...this.state.recipes};
     const last = Date.now()
     recipes[`recipe${last}`] = recipe; 
