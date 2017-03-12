@@ -20,7 +20,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-       value: '',
         recipes: {
           recipe1: {
             edit: false,
@@ -53,7 +52,6 @@ class App extends Component {
     const recipes = {...this.state.recipes};
     const last = Date.now()
     recipes[`recipe${last}`] = recipe; 
-    console.log(last)
     this.setState({recipes});
   }
 
@@ -78,10 +76,8 @@ class App extends Component {
 
   // Edit Recipe!
   editRecipe = (event, key) => {
-    console.log(key)
     event.preventDefault();
     const recipes = {...this.state.recipes}
-    console.log(this.editTitle.value, this.editTextarea.value.split(','))
     recipes[key] = {
       title: this.editTitle.value,
       items: this.editTextarea.value.split(',')
@@ -112,7 +108,6 @@ class App extends Component {
   componentWillMount() {
     if(storageAvailable('localStorage')) {
         const localRef = localStorage.getItem('recipes', JSON.stringify(this.state.recipes))
-        console.log(localRef)
         if(localRef) {
           this.setState({
             recipes: JSON.parse(localRef)
@@ -133,8 +128,7 @@ class App extends Component {
         Object.keys(recipes).map((recipe, index) => {
           return (
             <div>
-              <h2 key={recipe}
-                  onClick={() => console.log(recipes[recipe].title)}>
+              <h2 key={recipe}>
                   {recipes[recipe].title}</h2>
               <ul>
                 {
