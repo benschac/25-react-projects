@@ -18,7 +18,21 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.pixel{
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border: 1px solid darkgray;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.pixel-alive{
+  background-color: red;
+}
+
+.pixel-dead{
+  background-color: lightgray;
 }
