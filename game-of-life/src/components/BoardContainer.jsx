@@ -3,17 +3,16 @@ import Board from './Board';
 
 class BoardContainer extends React.Component {
 
-    constructor(props){
-        super(props);
-    }
-
-
-
     render() {
-        var { size, pixels, toggleLife } = this.props;
-        return <Board size={size}
+        var { size, pixels, pixelSize, toggleLife } = this.props;
+        return (
+            <div className="boardContainer">
+                <Board size={size}
+                      pixelSize={pixelSize}
                       pixels={pixels}
                       toggleLife={toggleLife} />
+            </div>
+        )
     }
 } 
 

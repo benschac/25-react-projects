@@ -11,7 +11,7 @@ class Pixel extends React.Component {
 	}
 
 	handleClick = () => {
-		let { x, y } = this.props;
+		let { x, y, pixelSize } = this.props;
 		this.setState({
 			alive: !this.state.alive
 		})
@@ -19,9 +19,10 @@ class Pixel extends React.Component {
 	}
 
 	render() {
-		var stateClass = this.state.alive ? "alive" : "dead"
+		let stateClass = this.state.alive ? "alive" : "dead"
+		let { x, y, pixelSize } = this.props;
 		return (<div 
-			style={{"top": 10*this.props.y, "left": 10*this.props.x}}
+			style={{"top": pixelSize*y, "left": pixelSize*x}}
 			className={"pixel pixel-"+stateClass} onClick={this.handleClick}>
 		</div>);
 	}

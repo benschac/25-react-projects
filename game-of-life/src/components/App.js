@@ -5,6 +5,7 @@ import _ from 'lodash';
 import Controls from './Controls';
 import './App.css';
 
+// Todo: Move this and use pixel component.
 function Pixel(alive) {
   this.alive = alive;
   return this;
@@ -18,12 +19,13 @@ class App extends React.Component {
       isEvolving: false,
       generation: 0,
       speed: 1000,
+      pixelSize: 20,
       pixels: []
     }
   }
 
   componentWillMount(){
-    var pixels = [];
+    let pixels = [];
     _.times(this.state.size, i=>{
       _.times(this.state.size, j=>{
         pixels.push(new Pixel(false));
@@ -36,22 +38,22 @@ class App extends React.Component {
 
   toggleLife = (position) => {
     
-      let { pixels, size } = this.state;
-      console.log('before', pixels[position.y*size + position.x].alive);
+      // ToDo: Don't mutate object in state. Spread and replace.
+      const { pixels, size } = this.state;
       pixels[position.y*size + position.x].alive = !pixels[position.y*size + position.x].alive;
-      console.log('after', pixels[position.y*size + position.x].alive);
       this.setState({
         pixels
       })
   }
 
   render() {
-  
+    const { size, pixels, pixelSize } = this.state;
     return (
-      <div className="App">
+      <div className="app">
         <BoardContainer 
-          size={this.state.size}
-          pixels={this.state.pixels}
+          size={size}
+          pixels={pixels}
+          pixelSize={pixelSize}
           toggleLife={this.toggleLife} />
         <Controls />
       </div>
