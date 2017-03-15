@@ -7,9 +7,13 @@ class BoardContainer extends React.Component {
         super(props);
     }
 
+
+
     render() {
-        var { size, pixels } = this.props;
-        return <Board size={size} pixels={pixels} />
+        var { size, pixels, toggleLife } = this.props;
+        return <Board size={size}
+                      pixels={pixels}
+                      toggleLife={toggleLife} />
     }
 } 
 

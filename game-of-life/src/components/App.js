@@ -34,12 +34,25 @@ class App extends React.Component {
     });
   }
 
+  toggleLife = (position) => {
+    
+      let { pixels, size } = this.state;
+      console.log('before', pixels[position.y*size + position.x].alive);
+      pixels[position.y*size + position.x].alive = !pixels[position.y*size + position.x].alive;
+      console.log('after', pixels[position.y*size + position.x].alive);
+      this.setState({
+        pixels
+      })
+  }
+
   render() {
+  
     return (
       <div className="App">
         <BoardContainer 
           size={this.state.size}
-          pixels={this.state.pixels} />
+          pixels={this.state.pixels}
+          toggleLife={this.toggleLife} />
         <Controls />
       </div>
     );
