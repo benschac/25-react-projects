@@ -11,7 +11,10 @@ class Pixel extends React.Component {
 
 	render() {
 		var stateClass = this.state.alive ? "alive" : "dead"
-		return <div className={"pixel pixel-"+stateClass}></div>;
+		return (<div 
+			style={{"top": 10*this.props.y, "left": 10*this.props.x}}
+			className={"pixel pixel-"+stateClass}>
+		</div>);
 	}
 
 }

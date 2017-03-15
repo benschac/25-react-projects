@@ -6,8 +6,14 @@ class Board extends React.Component {
 
     render() {
         return (<div>
-            {this.props.pixels.map(d=>{
-                return <Pixel alive={d.alive} />;
+            {this.props.pixels.map((d,i)=>{
+                var x = i % this.props.size;
+                var y = Math.floor(i / this.props.size);
+                return <Pixel
+                    x={x}
+                    y={y}
+                    key={`${x}.${y}`} 
+                    alive={d.alive} />;
             })}
         </div>);
     }
