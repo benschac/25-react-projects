@@ -12,34 +12,39 @@ import './App.css';
 let gen;
 
 // Todo: Move this and use pixel component.
-function Pixel(alive,x,y) {
+function Pixel(alive,x,y,size) {
   this.alive = alive;
   this.x = x;
   this.y = y;
+  this.neighbors = getNeighbors(x,y,size);
   return this;
 }
 
-function getNeighbors(i,size,total){
+function getNeighbors(x,y,size){
   let neighbors = [];
   //top row
-  if(Math.floor(i/size) === 0){
+  let cases = [[x-1,y-1],[x,y-1],[x+1,y-1],
+               [x-1,y],[x+1,y],
+               [x-1,y+1],[x,y+1],[x+1,y+1]];
+  _.forEach(cases, i => {
+    if(i[0] >= 0 && i[1] >= 0 && i[0] < size && i[1] < size){
+      neighbors.push(i);
+    }
+  })
+  return neighbors;
+}
 
-  //bottom row
-  } else if (Math.floor(i/size) === size-1){
-
-  }
-  //left column
-  if(i%size === 0){
-
-  //right column
-  } else if (i % size === size-1){
-
-  }
-  return neighbors.filter(o => o > 0 && o < total);
+function shouldBeAlive(neighbors, status){
+  let alive = 0,
+      dead = 0;
+  _.forEach(neighbors, n=>{
+    n.alive ? alive += 1 : dead += 1;
+  })
+  return (status && alive === 2) || (alive === 3);
 }
 
 const aliveOrDead = () => {
-  return Math.floor(Math.random() * 2) ? true : false;
+  return Math.random() < .5;
 }
 
 class App extends React.Component {
@@ -57,9 +62,10 @@ class App extends React.Component {
 
   componentWillMount(){
     let pixels = [];
-    _.times(this.state.size, i=>{
-      _.times(this.state.size, j=>{
-        pixels.push(new Pixel(aliveOrDead()),j,i);
+    let {size} = this.state
+    _.times(size, i=>{
+      _.times(size, j=>{
+        pixels.push(new Pixel(aliveOrDead(),j,i,size));
       });
     });
     this.setState({
@@ -68,7 +74,6 @@ class App extends React.Component {
   }
 
   toggleLife = (position) => {
-    
       // ToDo: Don't mutate object in state. Spread and replace.
       const { pixels, size } = this.state;
       pixels[position.y*size + position.x].alive = !pixels[position.y*size + position.x].alive;
@@ -91,8 +96,15 @@ class App extends React.Component {
   }
 
   evolve = () => {
+    const oldPixels = {...this.state.pixels}
+    let pixels = {...this.state.pixels}
+    _.forEach(pixels, p=>{
+      let neighbors = p.neighbors.map(i => oldPixels[ i[1] * this.state.size + i[0] ])
+      p.alive = shouldBeAlive(neighbors, p.alive);
+    })
     this.setState({
-      generation: this.state.generation + 1
+      generation: this.state.generation + 1,
+      pixels: pixels
     })
   }
 
