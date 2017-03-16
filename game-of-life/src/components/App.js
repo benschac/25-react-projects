@@ -120,7 +120,7 @@ class App extends React.Component {
   }
 
   updateSizeSpeed = (size, speed) => {
-    console.log(typeof size, typeof speed)
+    
     size = size || this.state.size;
     speed = 1000*speed || this.state.size;    
     this.setState({

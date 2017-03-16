@@ -1,7 +1,14 @@
 
 *{
   box-sizing: border-box;
+    font-family: 'EB Garamond', serif;
 }
+
+body {
+  font-family: 'EB Garamond', serif;
+}
+
+
 
 .app {
   display: flex;
