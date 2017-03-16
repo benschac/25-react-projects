@@ -8,14 +8,11 @@ class Board extends React.Component {
         let { toggleLife, size, pixels, pixelSize } = this.props;
         return (<div className="board">
             {pixels.map((d,i)=>{
-                let x = i % size;
-                let y = Math.floor(i / size);
                 return <Pixel
-                    x={x}
-                    y={y}
-                    key={`${x}.${y}`} 
+                    x={d.x}
+                    y={d.y}
+                    key={i}  //`${d.x}.${d.y}`
                     alive={d.alive}
-                    size={size}
                     pixelSize={pixelSize}
                     toggleLife={toggleLife} />;
             })}

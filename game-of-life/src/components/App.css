@@ -3,10 +3,25 @@
   box-sizing: border-box;
 }
 
+.app {
+  display: flex;
+  flex-direction: row; 
+  height: 100%;
+}
 
+.boardContainer {
+  width: 50%;
+  position: relative;
+  margin-left: 100px;
+}
+
+.board {
+  margin-left: 100px;
+  position: absolute;
+}
 
 .pixel{
-  position: absolute;
+  position: fixed;
   height: 20px;
   width: 20px;
   border: 1px solid darkgray;
