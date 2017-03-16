@@ -10,9 +10,8 @@
 }
 
 .boardContainer {
-  width: 50%;
+  width: 60%;
   position: relative;
-  margin-left: 100px;
 }
 
 .board {

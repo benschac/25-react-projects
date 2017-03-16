@@ -18,7 +18,7 @@ class Controls extends Component {
             <div>
                 <h1>Hello from Controls</h1>
                 <button onClick={this.props.startStop}>Start/Stop</button>
-                <button>Clear</button>
+                <button onClick={this.props.clear}>Clear</button>
                 <h3>Generations: {this.props.generation}</h3>
             </div>
             <div>

@@ -6,7 +6,6 @@ class Board extends React.Component {
 
     render() {
         let { toggleLife, size, pixels, pixelSize } = this.props;
-        console.log(pixels);
         return (<div className="board">
             {pixels.map((d,i)=>{
                 return <Pixel

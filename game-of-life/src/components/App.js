@@ -40,6 +40,7 @@ function shouldBeAlive(neighbors, status){
   _.forEach(neighbors, n=>{
     n.alive ? alive += 1 : dead += 1;
   })
+  // debugger;
   return (status && alive === 2) || (alive === 3);
 }
 
@@ -54,7 +55,7 @@ class App extends React.Component {
       size: 20,
       isEvolving: false,
       generation: 0,
-      speed: 1000,
+      speed: 250,
       pixelSize: 20,
       pixels: []
     }
@@ -95,13 +96,27 @@ class App extends React.Component {
     })
   }
 
+  clear = () => {
+    clearInterval(gen);
+    let pixels = [...this.state.pixels]
+    _.forEach(pixels, p=>{
+      p.alive = false;
+    })
+    this.setState({
+      pixels,
+      generation: 0
+    })
+  }
+
   evolve = () => {
-    const oldPixels = [...this.state.pixels]
+    const oldPixels = _.cloneDeep(this.state.pixels);
     let pixels = [...this.state.pixels]
     _.forEach(pixels, p=>{
       let neighbors = p.neighbors.map(i => oldPixels[ i[1] * this.state.size + i[0] ])
+      // debugger;
       p.alive = shouldBeAlive(neighbors, p.alive);
     })
+    console.log(pixels);
     this.setState({
       generation: this.state.generation + 1,
       pixels: pixels
@@ -119,6 +134,7 @@ class App extends React.Component {
           toggleLife={this.toggleLife} />
         <Controls 
           startStop={this.startStop}
+          clear={this.clear}
           generation={generation}/>
       </div>
     );
