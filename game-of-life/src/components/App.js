@@ -74,11 +74,11 @@ class App extends React.Component {
   }
 
   toggleLife = (position) => {
-      const { pixels, size } = this.state;
-      pixels[position.y*size + position.x].alive = !pixels[position.y*size + position.x].alive;
-      this.setState({
-        pixels
-      })
+    const { pixels, size } = this.state;
+    pixels[position.y*size + position.x].alive = !pixels[position.y*size + position.x].alive;
+    this.setState({
+      pixels
+    })
   }
 
   startStop = () => {
@@ -105,6 +105,18 @@ class App extends React.Component {
       generation: 0
     })
   }
+  
+  customPattern = (pattern) => {
+    let { pixels } = this.state
+    _.forEach(pixels, (p,i)=>{
+      if(pattern.indexOf(i) !== -1){
+        p.alive = true;
+      } else {
+        p.alive = false;
+      }
+    });
+    return pixels
+  }
 
   evolve = () => {
     const oldPixels = _.cloneDeep(this.state.pixels);
@@ -119,9 +131,9 @@ class App extends React.Component {
     })
   }
 
-  updateSizeSpeed = (size, speed) => {
+  updateSizeSpeed = (size, speed, pattern=null) => {
     size = size || this.state.size;
-    speed = 1000*speed || this.state.size;    
+    speed = 1000*speed || this.state.size;
     this.setState({
       size,
       speed,
