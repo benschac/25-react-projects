@@ -20,12 +20,12 @@
 }
 
 .pixel{
-  position: fixed;
+  position: absolute;
   border: 1px solid darkgray;
 }
 
 .pixel-alive{
-  background-color: red;
+  background-color: blue;
 }
 
 .pixel-dead{

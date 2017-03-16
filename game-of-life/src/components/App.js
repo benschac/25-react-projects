@@ -10,6 +10,7 @@ import './App.css';
 // Add Buttons to Controls
 
 let gen;
+let time;
 
 // Todo: Move this and use pixel component.
 function Pixel(alive,x,y,size) {
@@ -34,13 +35,8 @@ function getNeighbors(x,y,size){
   return neighbors;
 }
 
-function shouldBeAlive(neighbors, status){
-  let alive = 0,
-      dead = 0;
-  _.forEach(neighbors, n=>{
-    n.alive ? alive += 1 : dead += 1;
-  })
-  // debugger;
+function conwayRules(neighbors, status){  
+  let alive = neighbors.reduce((t,v)=> t+v,0);
   return (status && alive === 2) || (alive === 3);
 }
 
@@ -114,18 +110,16 @@ class App extends React.Component {
     const oldPixels = _.cloneDeep(this.state.pixels);
     let pixels = [...this.state.pixels]
     _.forEach(pixels, p=>{
-      let neighbors = p.neighbors.map(i => oldPixels[ i[1] * this.state.size + i[0] ])
-      // debugger;
-      p.alive = shouldBeAlive(neighbors, p.alive);
+      let neighbors = p.neighbors.map(i => oldPixels[ i[1] * this.state.size + i[0] ].alive)
+      p.alive = conwayRules(neighbors, p.alive);
     })
     this.setState({
       generation: this.state.generation + 1,
-      pixels: pixels
+      pixels
     })
   }
 
   updateSizeSpeed = (size, speed) => {
-    console.log(typeof size, typeof speed)
     size = size || this.state.size;
     speed = 1000*speed || this.state.size;    
     this.setState({

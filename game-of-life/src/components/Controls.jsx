@@ -14,7 +14,6 @@ class Controls extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.size.value)
         this.props.updateSizeSpeed(+this.size.value, +this.speed.value)
     }
 
@@ -22,7 +21,7 @@ class Controls extends Component {
         return (
             <div>
             <div>
-                <h1>Hello from Controls</h1>
+                <h1>Settings</h1>
                 <button onClick={this.props.startStop}>Start/Stop</button>
                 <button onClick={this.props.clear}>Clear</button>
                 <h3>Generations: {this.props.generation}</h3>
