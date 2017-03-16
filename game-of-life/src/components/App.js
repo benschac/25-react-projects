@@ -115,11 +115,12 @@ class App extends React.Component {
     })
     this.setState({
       generation: this.state.generation + 1,
-      pixels
+      pixels: pixels
     })
   }
 
   updateSizeSpeed = (size, speed) => {
+    console.log(typeof size, typeof speed)
     size = size || this.state.size;
     speed = 1000*speed || this.state.size;    
     this.setState({
