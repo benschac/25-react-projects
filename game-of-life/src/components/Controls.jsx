@@ -12,6 +12,12 @@ class Controls extends Component {
         }
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.size.value)
+        this.props.updateSizeSpeed(+this.size.value, +this.speed.value)
+    }
+
     render() {
         return (
             <div>
@@ -21,15 +27,26 @@ class Controls extends Component {
                 <button onClick={this.props.clear}>Clear</button>
                 <h3>Generations: {this.props.generation}</h3>
             </div>
-            <div>
-                <p>Board Size:</p>
-                <input type="number" />
-            </div>
-            <div>
-                <p>Speed in seconds</p>
-                <input type="number"/>
-                
-            </div>
+            <form ref={(input) => this.form = input } onSubmit={(e) => this.handleSubmit(e)}>
+                <div>
+                    <p>Board Size:</p>
+                    <input 
+                        ref={(input) => this.size = input } 
+                        type="number"
+                        defaultValue={20} />
+                </div>
+                <div>
+                    <p>Speed in seconds</p>
+                    <input 
+                        ref={(input) => this.speed = input } 
+                        type="number"
+                        defaultValue={.25}
+                        step={.25} />
+                    
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+
             </div>
             
         )

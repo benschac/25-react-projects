@@ -56,14 +56,17 @@ class App extends React.Component {
       isEvolving: false,
       generation: 0,
       speed: 250,
-      pixelSize: 20,
+      pixelSize: 30,
       pixels: []
     }
   }
 
   componentWillMount(){
+    this.setBoard(this.state.size);
+  }
+
+  setBoard = (size) => {
     let pixels = [];
-    let {size} = this.state
     _.times(size, i=>{
       _.times(size, j=>{
         pixels.push(new Pixel(aliveOrDead(),j,i,size));
@@ -75,7 +78,6 @@ class App extends React.Component {
   }
 
   toggleLife = (position) => {
-      // ToDo: Don't mutate object in state. Spread and replace.
       const { pixels, size } = this.state;
       pixels[position.y*size + position.x].alive = !pixels[position.y*size + position.x].alive;
       this.setState({
@@ -116,11 +118,33 @@ class App extends React.Component {
       // debugger;
       p.alive = shouldBeAlive(neighbors, p.alive);
     })
-    console.log(pixels);
     this.setState({
       generation: this.state.generation + 1,
       pixels: pixels
     })
+  }
+
+  updateSizeSpeed = (size, speed) => {
+    console.log(typeof size, typeof speed)
+    size = size || this.state.size;
+    speed = 1000*speed || this.state.size;    
+    this.setState({
+      size,
+      speed,
+      pixelSize: 600/size
+    })
+    if(this.state.isEvolving) {
+      clearInterval(gen);
+      gen = setInterval(() => {
+        this.evolve()
+      }, this.state.speed);
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if(nextState.size !== this.state.size) {
+      this.setBoard(nextState.size);
+    }
   }
 
   render() {
@@ -132,9 +156,11 @@ class App extends React.Component {
           pixels={pixels}
           pixelSize={pixelSize}
           toggleLife={this.toggleLife} />
+
         <Controls 
           startStop={this.startStop}
           clear={this.clear}
+          updateSizeSpeed={this.updateSizeSpeed}
           generation={generation}/>
       </div>
     );
