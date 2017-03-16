@@ -3,17 +3,7 @@
   box-sizing: border-box;
 }
 
-body {
-  height: 100%;
 
-}
-
-.app {
- position: relative; 
- width: 100%;
- height: 500px;
- position: relative;
-}
 
 .pixel{
   position: absolute;

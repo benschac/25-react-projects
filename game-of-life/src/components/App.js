@@ -5,10 +5,20 @@ import _ from 'lodash';
 import Controls from './Controls';
 import './App.css';
 
+// To do, set interval generations.
+// Show Counter Generations
+// Add conway's rules.  Need to think about pixels on the edges.
+// Add Buttons to Controls
+
+
 // Todo: Move this and use pixel component.
 function Pixel(alive) {
   this.alive = alive;
   return this;
+}
+
+const aliveOrDead = () => {
+  return Math.floor(Math.random() * 2) ? true : false;
 }
 
 class App extends React.Component {
@@ -28,7 +38,8 @@ class App extends React.Component {
     let pixels = [];
     _.times(this.state.size, i=>{
       _.times(this.state.size, j=>{
-        pixels.push(new Pixel(false));
+        
+        pixels.push(new Pixel(aliveOrDead()));
       });
     });
     this.setState({

@@ -15,6 +15,7 @@ class Board extends React.Component {
                     y={y}
                     key={`${x}.${y}`} 
                     alive={d.alive}
+                    size={size}
                     pixelSize={pixelSize}
                     toggleLife={toggleLife} />;
             })}

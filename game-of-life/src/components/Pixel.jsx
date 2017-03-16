@@ -7,15 +7,19 @@ class Pixel extends React.Component {
 		this.state = {
 			alive: this.props.alive
 		}
-
 	}
 
 	handleClick = () => {
 		let { x, y, pixelSize } = this.props;
-		this.setState({
-			alive: !this.state.alive
-		})
 		this.props.toggleLife({x, y});
+	}
+	
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.alive !== this.state.alive) {
+			this.setState({
+				alive: nextProps.alive
+			})
+		}
 	}
 
 	render() {
