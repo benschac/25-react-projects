@@ -3,12 +3,13 @@
 This project collection is based off of [25 React Projects](http://sean-smith.me/assets/portfolio/25-react-projects/index.html). Projects are typically started with [create-react-app](https://github.com/facebookincubator/create-react-app) & ES6 unless otherwise specified.  Please follow their documentation to start projects on your local machine.
 
 ### Project - Conway's Game of Life (React + Lodash)
-![Conway's Game of Life](http://g.recordit.co/UrUpCMd6wl.gif)
 This implementation was made with React and LoDash and emmulates the classic game of life. Here's a [link](https://www.youtube.com/watch?v=E8kUJL04ELA) to Conway explaining the game.  Each game is started with a random set of pixels either live or dead and changes the pixels life status with each generation.  Pixels change state based on their neighbors state of dead or alive.
+![Conway's Game of Life](http://g.recordit.co/UrUpCMd6wl.gif)
 
 ### Project - Recipe Box (Styling coming soon!) (React + LocalStorage API)
-![Recipe Box](http://g.recordit.co/L1c6pdNhxO.gif)
 Built with React.js using LocalStorage we can Create, Read, Update and Destroy Recipes.  This application heavily uses React's State and LifeCycle components in order to make this functionality possible.  Want to read more.  Check out my blog post on this project [here](https://medium.com/@benschac/fcc-leaderboard-and-understanding-state-9bb9a46821f#.pu2z15wqe).
+![Recipe Box](http://g.recordit.co/L1c6pdNhxO.gif)
+
 
 ### Project - Leader Board (React + Fetch API):
 This project was built with React.js + Fetch API to pull data from an end point.  Taking advantage of React's, click events I was able to pass down click handlers which requested data from the API to the Users Row Component.
