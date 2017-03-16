@@ -5,8 +5,8 @@ import Pixel from './Pixel.jsx';
 class Board extends React.Component {
 
     render() {
-        console.log(pixels);
         let { toggleLife, size, pixels, pixelSize } = this.props;
+        console.log(pixels);
         return (<div className="board">
             {pixels.map((d,i)=>{
                 return <Pixel

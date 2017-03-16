@@ -96,8 +96,8 @@ class App extends React.Component {
   }
 
   evolve = () => {
-    const oldPixels = {...this.state.pixels}
-    let pixels = {...this.state.pixels}
+    const oldPixels = [...this.state.pixels]
+    let pixels = [...this.state.pixels]
     _.forEach(pixels, p=>{
       let neighbors = p.neighbors.map(i => oldPixels[ i[1] * this.state.size + i[0] ])
       p.alive = shouldBeAlive(neighbors, p.alive);
