@@ -18,7 +18,7 @@ function Pixel(alive,x,y,size) {
   this.x = x;
   this.y = y;
   this.neighbors = getNeighbors(x,y,size);
-  return this;
+  
 }
 
 function getNeighbors(x,y,size){
