@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 class AthletesMenu extends Component {
-    state = {  }
+
     render() {
         const { athletes } = this.props;
         return (
