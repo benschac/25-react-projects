@@ -9,7 +9,7 @@ const typeMap = {
 
 class Medal extends Component {
     render() {
-        const { year, city, event, category } = this.props;
+        const { year, city, event, category, type } = this.props;
         return (
             <li className="Medal">
                 <span className={`symbol symbol-${type}`} title={typeMap[type]}>{type}</span>

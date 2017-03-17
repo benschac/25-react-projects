@@ -34,9 +34,6 @@ class Flag extends Component {
         return (
             <span className="flag">
                 <img className="icon" title={name} src={`img/${icon}`}/>
-                /**
-                 * If name is provided show it.
-                 */
                 { showName && <span className="name"> {name} </span> }
             </span>        
         );
