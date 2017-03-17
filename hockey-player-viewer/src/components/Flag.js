@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 // Will be updated with NHL API.
 const data = {
