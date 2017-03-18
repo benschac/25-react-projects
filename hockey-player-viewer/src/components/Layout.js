@@ -9,7 +9,7 @@ class Layout extends Component {
             <div className="app-container">
                 <header>
                     <Link to="/">
-                        <img className="logo" src="/img/logo-judo-heros.png"/>
+                        <img className="logo" src="/img/logo-judo-heroes.png"/>
                     </Link>
                 </header>
                 <div className="app-content">

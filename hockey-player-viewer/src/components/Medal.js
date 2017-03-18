@@ -12,11 +12,11 @@ class Medal extends Component {
         const { year, city, event, category, type } = this.props;
         return (
             <li className="Medal">
-                <span className={`symbol symbol-${type}`} title={typeMap[type]}>{type}</span>
-                <span className="year">{year}</span>
-                <span className="city">{city}</span>
-                <span className="event">{event}</span>
-                <span className="category">{category}</span>
+                <span className={`symbol symbol-${type}`} title={typeMap[type]}>{typeMap[type]} </span>
+                <span className="year"> {year}</span>
+                <span className="city"> {city}</span>
+                <span className="event"> {event}</span>
+                <span className="category"> {category}</span>
             </li>
         );
     }
