@@ -9,9 +9,9 @@ class AthletesMenu extends Component {
             <nav className="athletes-menu">
                 {athletes.map( menuAthlete => {
                     return <Link key={menuAthlete.id} 
-                                to={`/athlete/${menuAthlete.id}`}
-                                activeClassName="active">
-                                {menuAthlete.name}
+                                 to={`/athlete/${menuAthlete.id}`}
+                                 activeClassName="active">
+                                 {menuAthlete.name}
                           </Link>
                 })}
             </nav>
