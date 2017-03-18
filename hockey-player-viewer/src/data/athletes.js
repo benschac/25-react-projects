@@ -2,8 +2,47 @@
 // API.
 
 // To-Do, has basic stats.  Need to Query API for Cups and or Stats based off Player ID.
+
+
+// Team Response
+// https://statsapi.web.nhl.com/api/v1/teams?expand=team.roster&site=en_nhl
+
+// "teams" : [ {
+//     "id" : 1,
+//     "name" : "New Jersey Devils",
+//     "link" : "/api/v1/teams/1",
+//     "venue" : {
+//       "name" : "Prudential Center",
+//       "link" : "/api/v1/venues/null",
+//       "city" : "Newark",
+//       "timeZone" : {
+//         "id" : "America/New_York",
+//         "offset" : -4,
+//         "tz" : "EDT"
+//       }
+//     },
+//     "abbreviation" : "NJD",
+//     "teamName" : "Devils",
+//     "locationName" : "New Jersey",
+//     "firstYearOfPlay" : "1982",
+//     "division" : {
+//       "id" : 18,
+//       "name" : "Metropolitan",
+//       "link" : "/api/v1/divisions/18"
+//     },
+//     "conference" : {
+//       "id" : 6,
+//       "name" : "Eastern",
+//       "link" : "/api/v1/conferences/6"
+//     },
+//     "franchise" : {
+//       "franchiseId" : 23,
+//       "teamName" : "Devils",
+//       "link" : "/api/v1/franchises/23"
+//     }
+
+// Player response abbreviation.
 // https://statsapi.web.nhl.com/api/v1/teams/1/roster?expand=roster.person,person.names&site=en_nhl
-// NHL Player response.
 // {
 //     "person" : {
 //       "id" : 8471233,
@@ -50,6 +89,118 @@
 //       "abbreviation" : "C"
 //     }
 //   }
+
+
+// Player Detail Response
+// https://statsapi.web.nhl.com/api/v1/people/8471233?expand=person.stats&stats=yearByYear,careerRegularSeason&expand=stats.team&site=en_nhl
+// {
+//   "copyright" : "NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL 2017. All Rights Reserved.",
+//   "people" : [ {
+//     "id" : 8471233,
+//     "fullName" : "Travis Zajac",
+//     "link" : "/api/v1/people/8471233",
+//     "firstName" : "Travis",
+//     "lastName" : "Zajac",
+//     "primaryNumber" : "19",
+//     "birthDate" : "1985-05-13",
+//     "currentAge" : 31,
+//     "birthCity" : "Winnipeg",
+//     "birthStateProvince" : "MB",
+//     "birthCountry" : "CAN",
+//     "nationality" : "CAN",
+//     "height" : "6' 2\"",
+//     "weight" : 185,
+//     "active" : true,
+//     "alternateCaptain" : true,
+//     "captain" : false,
+//     "rookie" : false,
+//     "shootsCatches" : "R",
+//     "rosterStatus" : "Y",
+//     "currentTeam" : {
+//       "id" : 1,
+//       "name" : "New Jersey Devils",
+//       "link" : "/api/v1/teams/1"
+//     },
+//     "primaryPosition" : {
+//       "code" : "C",
+//       "name" : "Center",
+//       "type" : "Forward",
+//       "abbreviation" : "C"
+//     },
+//     "stats" : [ {
+//       "type" : {
+//         "displayName" : "yearByYear"
+//       },
+//       "splits" : [ {
+//         "season" : "20022003",
+//         "stat" : {
+//           "timeOnIce" : "00:00",
+//           "assists" : 36,
+//           "goals" : 16,
+//           "pim" : 27,
+//           "games" : 59,
+//           "powerPlayTimeOnIce" : "00:00",
+//           "evenTimeOnIce" : "00:00",
+//           "penaltyMinutes" : "27",
+//           "faceOffPct" : 0.0,
+//           "shortHandedTimeOnIce" : "00:00",
+//           "points" : 52,
+//           "shifts" : 0
+//         },
+//         "team" : {
+//           "id" : 5012,
+//           "name" : "Salmon Arm Silverbacks",
+//           "link" : "/api/v1/teams/5012"
+//         },
+//         "league" : {
+//           "name" : "BCHL",
+//           "link" : "/api/v1/league/null"
+//         },
+//         "sequenceNumber" : 1
+//       }, {
+//         "season" : "20032004",
+//         "stat" : {
+//           "timeOnIce" : "00:00",
+//           "assists" : 69,
+//           "goals" : 43,
+//           "pim" : 110,
+//           "games" : 59,
+//           "powerPlayTimeOnIce" : "00:00",
+//           "evenTimeOnIce" : "00:00",
+//           "penaltyMinutes" : "110",
+//           "faceOffPct" : 0.0,
+//           "shortHandedTimeOnIce" : "00:00",
+//           "points" : 112,
+//           "shifts" : 0
+//         },
+//         "team" : {
+//           "id" : 5012,
+//           "name" : "Salmon Arm Silverbacks",
+//           "link" : "/api/v1/teams/5012"
+//         },
+//         "league" : {
+//           "name" : "BCHL",
+//           "link" : "/api/v1/league/null"
+//         },
+//         "sequenceNumber" : 1
+//       }, {
+//         "season" : "20042005",
+//         "stat" : {
+//           "timeOnIce" : "00:00",
+//           "assists" : 19,
+//           "goals" : 20,
+//           "pim" : 16,
+//           "games" : 45,
+//           "powerPlayTimeOnIce" : "00:00",
+//           "evenTimeOnIce" : "00:00",
+//           "penaltyMinutes" : "16",
+//           "faceOffPct" : 0.0,
+//           "shortHandedTimeOnIce" : "00:00",
+//           "points" : 39,
+//           "shifts" : 0
+//         },
+
+
 
 
 "use strict";
