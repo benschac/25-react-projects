@@ -16,6 +16,10 @@ class Layout extends Component {
                     { children }
                 </div>
                 <footer>
+                <div className="logo-bg--team-njd">
+                <h2>Devils svg here</h2>
+                </div>
+                
                     This is was an application built with universal javascript setup using React + Express.
                 </footer>
             </div>
