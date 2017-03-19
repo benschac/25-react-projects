@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import expect from 'expect';
 import deepFreeze from 'deepfreeze';
-import { todos } from './index.js'
+import todos from './todos.js'
 
-
+console.log(todos);
 describe('todos reducer', () => {
   it('should handle initial state', () => {
     expect(

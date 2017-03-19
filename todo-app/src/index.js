@@ -1,37 +1,27 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Redux, { createStore, combineReducers } from 'redux';
+import store from './reducers/index.js';
 import './index.css';
 
-const todo = (state, action) => {
-  switch(action.type) {
-    case 'ADD_TODO':
-      return {
-        id: action.id,
-        text: action.text,
-        completed: false
-      }
-    case 'TOGGLE_TODO':
-        if(state.id !== action.id) {
-          return state;
-        }
+console.log(store)
 
-        return {
-          ...state,
-          completed: !state.completed
-        }
-    default:
-      return state;
-  }
-}
 
-export const todos = (state = [], action ) => {
-  switch(action.type) {
-    case 'ADD_TODO':
-      return [ ...state,
-        todo(undefined, action)]
-    case 'TOGGLE_TODO':
-        return state.map(t => todo(t, action));
-    default:
-      return state;
-  }
-}
+
+
+// Basically Combine Reducers
+// const todoApp = (state = {}, action) => {
+//   return {
+//     todos: todos(
+//       state.todos,
+//       action
+//     ),
+//     visibilityFilter: visibilityFilter(
+//       state.visibilityFilter,
+//       action
+//     )
+//   }
+// }
+
+
+
