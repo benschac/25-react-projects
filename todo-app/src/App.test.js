@@ -6,7 +6,7 @@ import { todos } from './index.js'
 
 
 describe('todos reducer', () => {
-  it('should handle inital state', () => {
+  it('should handle initial state', () => {
     expect(
       todos(undefined, {})
     ).toEqual([])
@@ -33,4 +33,46 @@ describe('todos reducer', () => {
     ).toEqual(stateAfter);
 
   });
+
+  it('should handle TOGGLE_TODO', () => {
+    const stateBefore = [
+    {
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    },
+    {
+      id: 1,
+      text: 'Learn React Router',
+      completed: false
+    }
+    ];
+
+    const stateAfter = [
+     {
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    },
+    {
+      id: 1,
+      text: 'Learn React Router',
+      completed: true
+    } 
+    ]
+
+    const action = {
+      type: 'TOGGLE_TODO',
+      id: 1,
+      completed: true
+    }
+
+    deepFreeze(stateBefore);
+    deepFreeze(action);
+
+    expect(
+      todos(stateBefore, action)
+    ).toEqual(stateAfter);
+    
+  })
 });
