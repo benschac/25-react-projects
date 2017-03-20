@@ -26,7 +26,13 @@ const todos = (state = [], action ) => {
       return [ ...state,
         todo(undefined, action)]
     case 'TOGGLE_TODO':
-        return state.map(t => todo(t, action));
+      return state.map(t => todo(t, action));
+    case 'DELETE_TODO':
+    console.log(state.slice(action.id + 1, state.length - 1));
+      return [
+        ...state.slice(0, action.id),
+        ...state.slice(action.id + 1)
+      ]
     default:
       return state;
   }

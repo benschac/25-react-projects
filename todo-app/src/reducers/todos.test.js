@@ -73,5 +73,45 @@ describe('todos reducer', () => {
       todos(stateBefore, action)
     ).toEqual(stateAfter);
     
-  })
+  });
+
+  it('should handle DELETE_TODO', () => {
+    const stateBefore = [
+    {
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    },
+    {
+      id: 1,
+      text: 'Learn React Router',
+      completed: false
+    },
+    {
+      id: 2,
+      text: 'Derp Derp Derp',
+      completed: false
+    }
+    ];
+    const action = {
+      type: 'DELETE_TODO',
+      id: 1
+    }
+    const stateAfter = [
+    {
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    },
+    {
+      id: 2,
+      text: 'Derp Derp Derp',
+      completed: false
+    }
+    ]
+
+    expect(
+      todos(stateBefore, action)
+    ).toEqual(stateAfter);
+  });
 });
