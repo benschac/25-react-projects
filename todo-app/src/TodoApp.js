@@ -21,8 +21,10 @@ class TodoApp extends Component {
                 Add ToDo
                 </button>
                 <ul>
+                
                     {this.props.todos.map(todo => 
-                        <li key={todo.id}
+                        <div key={todo.id}>
+                        <li
                             onClick={() => {
                                 store.dispatch({
                                     type: 'TOGGLE_TODO',
@@ -36,7 +38,18 @@ class TodoApp extends Component {
                                     'line-through' : 'none'
                                 }}
                             >{todo.text}</li>
+
+                            <button
+                            onClick={() => {
+                                store.dispatch({
+                                    type: 'DELETE_TODO',
+                                    id: todo.id
+                                })
+                            }}
+                            >delete</button>
+                        </div>
                     )}
+                
                 </ul>
             </div>
         );

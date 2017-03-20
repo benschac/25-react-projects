@@ -15,6 +15,8 @@ const todo = (state, action) => {
           ...state,
           completed: !state.completed
         }
+    case 'DELETE_TODO':
+      return state.filter(t => t.id !== action.id);
     default:
       return state;
   }
@@ -28,11 +30,7 @@ const todos = (state = [], action ) => {
     case 'TOGGLE_TODO':
       return state.map(t => todo(t, action));
     case 'DELETE_TODO':
-    console.log(state.slice(action.id + 1, state.length - 1));
-      return [
-        ...state.slice(0, action.id),
-        ...state.slice(action.id + 1)
-      ]
+      return todo(state, action);
     default:
       return state;
   }

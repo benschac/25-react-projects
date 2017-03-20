@@ -75,7 +75,7 @@ describe('todos reducer', () => {
     
   });
 
-  it('should handle DELETE_TODO', () => {
+  it('should handle DELETE_TODO with many todos', () => {
     const stateBefore = [
     {
       id: 0,
@@ -109,6 +109,25 @@ describe('todos reducer', () => {
       completed: false
     }
     ]
+
+    expect(
+      todos(stateBefore, action)
+    ).toEqual(stateAfter);
+  });
+
+  it('should handle DELETE_TODO with one todo', () => {
+    const stateBefore = [
+    {
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    }
+    ];
+    const action = {
+      type: 'DELETE_TODO',
+      id: 0
+    }
+    const stateAfter = []
 
     expect(
       todos(stateBefore, action)
