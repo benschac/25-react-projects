@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import store from './index.js'; 
+import FilterLink from './FilterLink.js';
+import store from '../index.js';
+import getVisibleTodos from '../utilities/index.js'
 
 
 let nextToDoId = 0;
 class TodoApp extends Component {
     render() {
-        const { todos } = this.props;
-                
+        const { todos, visibilityFilter } = this.props;
+        const visibleTodos = getVisibleTodos(
+            todos,
+            visibilityFilter
+        );
+
+       
         return (
             <div>
                 <input ref={ node => {
@@ -24,7 +31,7 @@ class TodoApp extends Component {
                 </button>
                 <ul>
                 
-                    {todos.map(todo => 
+                    {visibleTodos.map(todo => 
                         
                         <div key={todo.id}>
                         {todo.edit ? 
@@ -78,6 +85,24 @@ class TodoApp extends Component {
                     )}
                 
                 </ul>
+                <p>
+                    Show:
+                    {' '}
+                    <FilterLink filter="SHOW_ALL"
+                                currentFilter={visibilityFilter}>
+                    All
+                    </FilterLink>
+                    {' '}
+                    <FilterLink filter="SHOW_ACTIVE"
+                                currentFilter={visibilityFilter}>
+                    Active
+                    </FilterLink>
+                    {' '}
+                    <FilterLink filter="SHOW_COMPLETED"
+                                currentFilter={visibilityFilter}>
+                    Completed
+                    </FilterLink>
+                </p>
             </div>
         );
     }
