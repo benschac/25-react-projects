@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FilterLink from './FilterLink.js';
 import store from '../index.js';
+import TodoList from './TodoList.js';
 import getVisibleTodos from '../utilities/index.js'
 
 
@@ -29,62 +30,36 @@ class TodoApp extends Component {
                 }}>
                 Add ToDo
                 </button>
-                <ul>
-                
-                    {visibleTodos.map(todo => 
-                        
-                        <div key={todo.id}>
-                        {todo.edit ? 
-                        <div>
-                        <input ref={(input) => this.text = input } defaultValue={todo.text} />
-                        <button onClick={ () => {
-                            store.dispatch({
-                                      type: 'EDIT_TODO',
-                                      text: this.text.value,
-                                      id: todo.id  
-                            })
-                        }}
-                        type="submit">Submit</button>
-                        </div> :
-                        <div>
-                            <li
-                                onClick={ () => {
-                                    store.dispatch({
-                                      type: 'TOGGLE_EDIT',
-                                      id: todo.id  
-                                    })
-                                }}
-                                style={{
-                                        textDecoration:
-                                        todo.completed ?
-                                        'line-through' : 'none'
-                                    }}
-                                >{todo.text}</li>
-                                <button
-                                onClick={() => {
-                                    store.dispatch({
-                                        type: 'TOGGLE_TODO',
-                                        id: todo.id
-                                    })
-                                    
-                                }}
-                                >
-                                {todo.completed ? "Undo" : "Completed" } 
-                                </button>
-                                <button
-                                onClick={() => {
-                                    store.dispatch({
-                                        type: 'DELETE_TODO',
-                                        id: todo.id
-                                    })
-                                }}
-                                >delete</button>
-                        </div> 
-                        }
-                        </div>
-                    )}
-                
-                </ul>
+                <TodoList 
+                    todos={visibleTodos}
+                    onCompleteClick={ id => 
+                        store.dispatch({
+                            type: 'TOGGLE_TODO',
+                            id
+                        })
+                    }
+
+                    onToggleEditClick={ id =>
+                        store.dispatch({
+                            type: 'TOGGLE_EDIT',
+                            id  
+                        })
+                    }
+
+                    onEditTodo={ id => 
+                        store.dispatch({
+                            type: 'EDIT_TODO',
+                            text: this.text.value,
+                            id  
+                        })
+                    }
+                    onDeleteTodo={id => 
+                        store.dispatch({
+                                type: 'DELETE_TODO',
+                                id
+                        })
+                    }
+                    />
                 <p>
                     Show:
                     {' '}
