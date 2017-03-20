@@ -4,21 +4,23 @@ import Todo from './Todo.js';
 const ToDoList = ({
     todos,
     onCompleteClick,
-    onToggleEdit,
-    onEditToDo,
+    onToggleEditClick,
+    onEditTodo,
     onDeleteTodo
 }) => (
     <ul>
         {
             todos.map(todo => {
+            return (
                 <Todo key={todo.id}
-                      {...todo}
-                      onCompleteClick={() => onCompleteClick(todo.id)}
-                      onToggleEdit={() => onToggleEdit(todo.id)}
-                      onEditToDo={() => onEditToDo(todo.id, todo.text)}
-                      onDeleteTodo={() => onDeleteTodo(todo.id)}
+                        {...todo}
+                        onCompleteClick={() => onCompleteClick(todo.id)}
+                        onToggleEditClick={() => onToggleEditClick(todo.id)}
+                        onEditTodo={() => onEditTodo(todo.id, todo.text)}
+                        onDeleteTodo={() => onDeleteTodo(todo.id)}
 
                 />
+            )
             })
         }
     </ul>

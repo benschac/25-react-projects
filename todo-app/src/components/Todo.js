@@ -1,26 +1,28 @@
 import React from 'react';
 
+
 const Todo = ({
-    onCompleteClick,
-    onToggleEdit,
-    onEditTodo,
-    onDeleteTodo,
-    completed,
+    todo,
     text,
     edit,
     id,
+    onCompleteClick,
+    onToggleEditClick,
+    onEditTodo,
+    onDeleteTodo,
+    completed,
 
 }) => (
         <div>
             {edit ? 
             <div>
-            <input ref={(input) => this.text = input } defaultValue={text} />
-            <button onClick={onEditTodo}
+            <input ref={ (input) => text = input } defaultValue={text} />
+            <button onClick={(text) => onEditTodo(text)}
             type="submit">Submit</button>
             </div> :
             <div>
                 <li
-                    onClick={onToggleEdit}
+                    onClick={onToggleEditClick}
                     style={{
                             textDecoration:
                             completed ?
