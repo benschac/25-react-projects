@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Redux, { createStore, combineReducers } from 'redux';
-import store from './reducers/index.js';
+import Redux, { createStore } from 'redux';
+import rootReducer from './reducers/index.js';
+import TodoApp from './TodoApp.js';
 import './index.css';
+const store = createStore(rootReducer);
 
-console.log(store)
 
 
+const render = () => {
+    ReactDOM.render( <TodoApp todos={store.getState().todos} />,
+    document.getElementById('root')
+    );
+};
+
+
+store.subscribe(render);
+render();
+export default store;
 
 
