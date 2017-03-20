@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
+import store from '../index.js';
 
 
-const Todo = ({
-    todo,
-    text,
-    edit,
-    id,
-    onCompleteClick,
-    onToggleEditClick,
-    onEditTodo,
-    onDeleteTodo,
-    completed,
+class Todo extends Component {
 
-}) => (
-        <div>
-            {edit ? 
+    render() {
+    let { 
+        todo,
+        text,
+        edit,
+        id,
+        onCompleteClick,
+        onToggleEditClick,
+        onEditTodo,
+        onDeleteTodo,
+        completed,} = this.props;
+        return (
             <div>
-            <input ref={ (input) => text = input } defaultValue={text} />
-            <button onClick={(text) => onEditTodo(text)}
+            {
+            edit ? 
+            <div>
+            <input ref={ (input) => this.text = input} defaultValue={text} />
+            <button onClick={() => console.log(this.text.value)}>test</button>
+            <button onClick={() => {
+                store.dispatch({
+                            type: 'EDIT_TODO',
+                            text: this.text.value,
+                            id  
+                        })
+            }}
             type="submit">Submit</button>
             </div> :
             <div>
@@ -40,6 +51,8 @@ const Todo = ({
             </div> 
             }
         </div>
-);
+        );
+    }
+}
 
 export default Todo;

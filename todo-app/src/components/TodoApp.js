@@ -47,7 +47,7 @@ class TodoApp extends Component {
                     }
 
                     onEditTodo={ (id, text) => {
-                        console.log('fired from on edit todo')
+                        console.log(id, text)
                         store.dispatch({
                             type: 'EDIT_TODO',
                             text: text,
