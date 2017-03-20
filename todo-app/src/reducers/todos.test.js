@@ -109,7 +109,8 @@ describe('todos reducer', () => {
       completed: false
     }
     ]
-
+    deepFreeze(stateBefore);
+    deepFreeze(action);
     expect(
       todos(stateBefore, action)
     ).toEqual(stateAfter);
@@ -129,6 +130,132 @@ describe('todos reducer', () => {
     }
     const stateAfter = []
 
+    deepFreeze(stateBefore);
+    deepFreeze(action);
+
+    expect(
+      todos(stateBefore, action)
+    ).toEqual(stateAfter);
+  });
+
+  it('should handle DELETE_TODO thats been completed', () => {
+        const stateBefore = [
+    {
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    },
+    {
+      id: 1,
+      text: 'Learn React Router',
+      completed: true
+    },
+    {
+      id: 2,
+      text: 'Derp Derp Derp',
+      completed: false
+    }
+    ];
+    const action = {
+      type: 'DELETE_TODO',
+      id: 1
+    }
+    const stateAfter = [
+    {
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    },
+    {
+      id: 2,
+      text: 'Derp Derp Derp',
+      completed: false
+    }
+    ]
+
+    deepFreeze(stateBefore);
+    deepFreeze(action);
+
+    expect(
+      todos(stateBefore, action)
+    ).toEqual(stateAfter);
+  })
+
+  it('should handle EDIT_TODO with one todo', () => {
+    const stateBefore = [
+    {
+      id: 1,
+      text: 'Learn React Router',
+      completed: false
+    }
+    ];
+    const action = {
+      type: 'EDIT_TODO',
+      id: 1,
+      text: 'Learn how to Moon Walk',
+      completed: false
+    }
+    const stateAfter = [
+    {
+      id: 1,
+      text: 'Learn how to Moon Walk',
+      completed: false
+    }
+    ]
+    deepFreeze(stateBefore);
+    deepFreeze(action);
+    expect(
+      todos(stateBefore, action)
+    ).toEqual(stateAfter);
+  });
+
+  it('should handle EDIT_TODO with many todos', () => {
+    const stateBefore = [
+    {
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    },
+    {
+      id: 1,
+      text: 'Learn React Router',
+      completed: false
+    },
+    {
+      id: 2,
+      text: 'Derp Derp Derp',
+      completed: false
+    }
+    ];
+
+    const action = {
+      type: 'EDIT_TODO',
+      id: 1,
+      text: 'Learn how to Moon Walk',
+      completed: false
+    }
+
+    const stateAfter = [
+    {
+      id: 0,
+      text: 'Learn Redux',
+      completed: false
+    },
+    {
+      id: 1,
+      text: 'Learn how to Moon Walk',
+      completed: false
+    },
+    {
+      id: 2,
+      text: 'Derp Derp Derp',
+      completed: false
+    }
+    ];
+
+    
+    deepFreeze(stateBefore);
+    deepFreeze(action);
     expect(
       todos(stateBefore, action)
     ).toEqual(stateAfter);
