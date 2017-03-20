@@ -5,6 +5,8 @@ import store from './index.js';
 let nextToDoId = 0;
 class TodoApp extends Component {
     render() {
+        const { todos } = this.props;
+                
         return (
             <div>
                 <input ref={ node => {
@@ -22,31 +24,45 @@ class TodoApp extends Component {
                 </button>
                 <ul>
                 
-                    {this.props.todos.map(todo => 
+                    {todos.map(todo => 
+                        
                         <div key={todo.id}>
-                        <li
-                            onClick={() => {
-                                store.dispatch({
-                                    type: 'TOGGLE_TODO',
-                                    id: todo.id
-                                })
-                                
-                            }}
-                            style={{
-                                    textDecoration:
-                                    todo.completed ?
-                                    'line-through' : 'none'
+                        {todo.edit ? <input defaultValue={todo.text} /> :
+                        <div>
+                            <li
+                                onClick={ () => {
+                                    store.dispatch({
+                                      type: 'TOGGLE_EDIT',
+                                      id: todo.id  
+                                    })
                                 }}
-                            >{todo.text}</li>
-
-                            <button
-                            onClick={() => {
-                                store.dispatch({
-                                    type: 'DELETE_TODO',
-                                    id: todo.id
-                                })
-                            }}
-                            >delete</button>
+                                style={{
+                                        textDecoration:
+                                        todo.completed ?
+                                        'line-through' : 'none'
+                                    }}
+                                >{todo.text}</li>
+                                <button
+                                onClick={() => {
+                                    store.dispatch({
+                                        type: 'TOGGLE_TODO',
+                                        id: todo.id
+                                    })
+                                    
+                                }}
+                                >
+                                {todo.completed ? "Undo" : "Completed" } 
+                                </button>
+                                <button
+                                onClick={() => {
+                                    store.dispatch({
+                                        type: 'DELETE_TODO',
+                                        id: todo.id
+                                    })
+                                }}
+                                >delete</button>
+                        </div> 
+                        }
                         </div>
                     )}
                 

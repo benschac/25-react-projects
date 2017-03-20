@@ -21,7 +21,8 @@ describe('todos reducer', () => {
     const stateAfter = [{
       id: 0,
       text: 'Learn Redux',
-      completed: false
+      completed: false,
+      edit: false
     }];
     
     deepFreeze(stateBefore);
@@ -260,4 +261,32 @@ describe('todos reducer', () => {
       todos(stateBefore, action)
     ).toEqual(stateAfter);
   });
+
+  it('should handle TOGGLE_EDIT', () => {
+    const stateBefore = [
+    {
+      id: 1,
+      text: 'Learn React Router',
+      completed: false,
+      edit: false
+    }
+    ];
+    const action = {
+      type: 'TOGGLE_EDIT',
+      id: 1
+    }
+    const stateAfter = [
+    {
+      id: 1,
+      text: 'Learn React Router',
+      completed: false,
+      edit: true
+    }
+    ]
+    deepFreeze(stateBefore);
+    deepFreeze(action);
+    expect(
+      todos(stateBefore, action)
+    ).toEqual(stateAfter);
+  })
 });
