@@ -35,7 +35,8 @@ const todo = (state, action) => {
         
         return {
           ...state,
-            text: action.text
+            text: action.text,
+            edit: false
         }
     default:
       return state;

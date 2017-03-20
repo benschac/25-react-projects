@@ -187,7 +187,8 @@ describe('todos reducer', () => {
     {
       id: 1,
       text: 'Learn React Router',
-      completed: false
+      completed: false,
+      edit: true
     }
     ];
     const action = {
@@ -200,7 +201,8 @@ describe('todos reducer', () => {
     {
       id: 1,
       text: 'Learn how to Moon Walk',
-      completed: false
+      completed: false,
+      edit: false
     }
     ]
     deepFreeze(stateBefore);
@@ -215,23 +217,26 @@ describe('todos reducer', () => {
     {
       id: 0,
       text: 'Learn Redux',
-      completed: false
+      completed: false,
+      edit: true
     },
     {
       id: 1,
       text: 'Learn React Router',
-      completed: false
+      completed: false,
+      edit: false
     },
     {
       id: 2,
       text: 'Derp Derp Derp',
-      completed: false
+      completed: false,
+      edit: false
     }
     ];
 
     const action = {
       type: 'EDIT_TODO',
-      id: 1,
+      id: 0,
       text: 'Learn how to Moon Walk',
       completed: false
     }
@@ -239,18 +244,21 @@ describe('todos reducer', () => {
     const stateAfter = [
     {
       id: 0,
-      text: 'Learn Redux',
-      completed: false
+      text: 'Learn how to Moon Walk',
+      completed: false,
+      edit: false
     },
     {
       id: 1,
-      text: 'Learn how to Moon Walk',
-      completed: false
+      text: 'Learn React Router',
+      completed: false,
+      edit: false
     },
     {
       id: 2,
       text: 'Derp Derp Derp',
-      completed: false
+      completed: false,
+      edit: false
     }
     ];
 

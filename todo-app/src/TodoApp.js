@@ -27,7 +27,18 @@ class TodoApp extends Component {
                     {todos.map(todo => 
                         
                         <div key={todo.id}>
-                        {todo.edit ? <input defaultValue={todo.text} /> :
+                        {todo.edit ? 
+                        <div>
+                        <input ref={(input) => this.text = input } defaultValue={todo.text} />
+                        <button onClick={ () => {
+                            store.dispatch({
+                                      type: 'EDIT_TODO',
+                                      text: this.text.value,
+                                      id: todo.id  
+                            })
+                        }}
+                        type="submit">Submit</button>
+                        </div> :
                         <div>
                             <li
                                 onClick={ () => {
