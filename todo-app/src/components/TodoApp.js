@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import FilterLink from './FilterLink.js';
-import store from '../index.js';
 import TodoList from './TodoList.js';
+import AddTodo from './AddTodo.js';
+import Footer from './Footer.js';
+import store from '../index.js';
 import getVisibleTodos from '../utilities/index.js'
 
 
@@ -17,19 +19,14 @@ class TodoApp extends Component {
        
         return (
             <div>
-                <input ref={ node => {
-                    this.input = node;
-                }}/>
-                <button onClick={() => {
+                <AddTodo onAddClick={text => 
                     store.dispatch({
-                        type: 'ADD_TODO',
-                        text: this.input.value,
-                        id: nextToDoId++
-                    })
-                    this.input.value = '';
-                }}>
-                Add ToDo
-                </button>
+                    type: 'ADD_TODO',
+                    id: nextToDoId++,
+                    text,
+                })
+                }
+                />
                 <TodoList 
                     todos={visibleTodos}
                     onCompleteClick={ id => 
@@ -45,14 +42,8 @@ class TodoApp extends Component {
                             id  
                         })
                     }
-
+                    // remove or refactor
                     onEditTodo={ (id, text) => {
-                        console.log(id, text)
-                        store.dispatch({
-                            type: 'EDIT_TODO',
-                            text: text,
-                            id  
-                        })
                     }
                         
                     }
@@ -63,24 +54,14 @@ class TodoApp extends Component {
                         })
                     }
                     />
-                <p>
-                    Show:
-                    {' '}
-                    <FilterLink filter="SHOW_ALL"
-                                currentFilter={visibilityFilter}>
-                    All
-                    </FilterLink>
-                    {' '}
-                    <FilterLink filter="SHOW_ACTIVE"
-                                currentFilter={visibilityFilter}>
-                    Active
-                    </FilterLink>
-                    {' '}
-                    <FilterLink filter="SHOW_COMPLETED"
-                                currentFilter={visibilityFilter}>
-                    Completed
-                    </FilterLink>
-                </p>
+                <Footer 
+                    visibilityFilter={visibilityFilter}
+                    onFilterClick={ filter => {
+                        type: 'SET_VISIBILITY_FILTER',
+                        filter
+                    }}
+                    />
+                
             </div>
         );
     }

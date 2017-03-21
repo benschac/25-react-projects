@@ -1,18 +1,22 @@
 import React from 'react';
 
-const AddTodo = () => {
+const AddTodo = ({
+    onAddClick
+}) => {
     let input;
-    const { onAddClick } = this.props;
+    
     return (
         <div>
             <input ref={ node => {
                 input = node;
             }}/>
-            <button onClick={
-            onAddClick(input.value) 
-            input.value = '';
-            }}>
-            Add ToDo
+            <button
+                onClick={ () => {
+                    onAddClick(input.value);
+                    input.value = '';
+                }
+            }>
+            Add Todo
             </button>
         </div>
     );

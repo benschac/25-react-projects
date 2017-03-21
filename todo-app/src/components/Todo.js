@@ -22,6 +22,7 @@ class Todo extends Component {
             <div>
             <input ref={ (input) => this.text = input} defaultValue={text} />
             <button onClick={() => console.log(this.text.value)}>test</button>
+            // shame, refactor this.
             <button onClick={() => {
                 store.dispatch({
                             type: 'EDIT_TODO',
