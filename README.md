@@ -6,6 +6,18 @@ This project collection is based off of [25 React Projects](http://sean-smith.me
 This implementation was made with React and LoDash and emmulates the classic game of life. Here's a [link](https://www.youtube.com/watch?v=E8kUJL04ELA) to Conway explaining the game.  Each game is started with a random set of pixels either live or dead and changes the pixels life status with each generation.  Pixels change state based on their neighbors state of dead or alive.
 ![Conway's Game of Life](http://g.recordit.co/UrUpCMd6wl.gif)
 
+### Project - Todo-List (Styling coming soon!) (React + Redux)
+Made with Redux, we're able to take advantage of Redux's application and separate concerns and organize the applications logic.  Additionally we're able to break components into container and presentation components further separating logic and functions that simply handle rendering the UI.  These are also known as stateful and stateless functional components.
+
+Users Can:
+- Create a Todo
+- Edit and Update a Todo
+- Complete a Todo
+- Delete a Todo
+- Toggle between completed and active todos
+![Todo List](http://g.recordit.co/uoR1VVcGXM.gif)
+
+
 ### Project - Recipe Box (Styling coming soon!) (React + LocalStorage API)
 Built with React.js using LocalStorage we can Create, Read, Update and Destroy Recipes.  This application heavily uses React's State and LifeCycle components in order to make this functionality possible.  Want to read more.  Check out my blog post on this project [here](https://medium.com/@benschac/fcc-leaderboard-and-understanding-state-9bb9a46821f#.pu2z15wqe).
 ![Recipe Box](http://g.recordit.co/L1c6pdNhxO.gif)
