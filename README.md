@@ -7,7 +7,7 @@ This implementation was made with React and LoDash and emmulates the classic gam
 ![Conway's Game of Life](http://g.recordit.co/UrUpCMd6wl.gif)
 
 ### Project - Todo-List (Styling coming soon!) (React + Redux)
-Made with Redux, we're able to take advantage of Redux's application and separate concerns and organize the applications logic.  Additionally we're able to break components into container and presentation components further separating logic and functions that simply handle rendering the UI.  These are also known as stateful and stateless functional components.
+Made with Redux, the application separates concerns and organizes logic from presentation UI.  This application takes full advantage of Redux's store, dispatch and subscribe methods to send actions to state and send new data.
 
 Users Can:
 - Create a Todo
@@ -15,6 +15,7 @@ Users Can:
 - Complete a Todo
 - Delete a Todo
 - Toggle between completed and active todos
+
 ![Todo List](http://g.recordit.co/uoR1VVcGXM.gif)
 
 
