@@ -6,13 +6,11 @@ class Todo extends Component {
 
     render() {
     let { 
-        todo,
         text,
         edit,
         id,
         onCompleteClick,
         onToggleEditClick,
-        onEditTodo,
         onDeleteTodo,
         completed,} = this.props;
         return (

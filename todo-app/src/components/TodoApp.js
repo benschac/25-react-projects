@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FilterLink from './FilterLink.js';
 import TodoList from './TodoList.js';
 import AddTodo from './AddTodo.js';
 import Footer from './Footer.js';
@@ -8,9 +7,11 @@ import getVisibleTodos from '../utilities/index.js'
 
 
 let nextToDoId = 0;
-class TodoApp extends Component {
-    render() {
-        const { todos, visibilityFilter } = this.props;
+const TodoApp = ({
+    todos,
+    visibilityFilter
+}) =>  {
+ 
         const visibleTodos = getVisibleTodos(
             todos,
             visibilityFilter
@@ -56,15 +57,12 @@ class TodoApp extends Component {
                     />
                 <Footer 
                     visibilityFilter={visibilityFilter}
-                    onFilterClick={ filter => {
-                        type: 'SET_VISIBILITY_FILTER',
-                        filter
-                    }}
+                    
                     />
                 
             </div>
         );
-    }
+    
 }
 
 export default TodoApp;
