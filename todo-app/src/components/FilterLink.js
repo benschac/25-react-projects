@@ -4,7 +4,9 @@ import store from '../index.js';
 const FilterLink = ({
     filter,
     currentFilter,
-    children
+    children,
+    onFilterClick,
+    onClick
 }) => {
         
         if(filter === currentFilter) {
@@ -14,10 +16,7 @@ const FilterLink = ({
         <a href="#"
            onClick={e => {
                e.preventDefault();
-               store.dispatch({
-                   type: 'SET_VISIBILITY',
-                   filter
-               })
+               onClick={onFilterClick}
                
            }}>
            { children }
