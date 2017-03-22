@@ -1,17 +1,65 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Layout from './Layout';
 import CountDownClock from './CountDownClock';
 import Controls from './Controls';
 import './App.css'
 
+// v. ugly, shame.
+let interval;
+class App extends Component {
+    constructor() {
+        super();
 
-const App = () => (
-    <div className="container">
-        <Layout>
-            <CountDownClock />
-            <Controls />
-        </Layout>
-    </div>
-);
+        this.state = {
+            pauses: 0,
+            interval: 0
+
+        }
+    }
+
+    clockToggle = (toggle) => {
+        if(toggle) {
+            interval = setInterval(() => {
+                let int = this.state.interval;
+                int--;
+                this.setState({
+                    interval: int
+                })
+            }, 1000)
+            
+        } else {
+            
+            let pauses = this.state.pauses
+            pauses++;
+            console.log(pauses);
+            this.setState({
+                pauses
+            })
+            clearInterval(interval);
+        }
+    }
+
+    intervalSet = (interval) => {
+        this.setState({
+            interval
+        })
+    }
+
+    render() {
+        return (
+        <div className="container">
+            <Layout>
+                <CountDownClock
+                    interval={this.state.interval} />
+                <Controls
+                    clockToggle={this.clockToggle}
+                    intervalSet={this.intervalSet}
+                />
+            </Layout>
+        </div>
+        )
+    }
+}
+
 
 export default App;
