@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-
-function msToTime(duration) {
-
+export const msToTime = (duration) => {
   var milliseconds = parseInt((duration%1000)/100)
   , seconds = parseInt((duration/1000)%60)
   , minutes = parseInt((duration/(1000*60))%60)
@@ -15,14 +12,3 @@ function msToTime(duration) {
 }
 
 
-
-class Clock extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
-  
-}
-
-export default Clock;
