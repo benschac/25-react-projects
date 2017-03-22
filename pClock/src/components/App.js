@@ -12,7 +12,7 @@ class App extends Component {
 
         this.state = {
             pauses: 0,
-            interval: 0
+            interval: 1800
 
         }
     }
@@ -45,6 +45,14 @@ class App extends Component {
         })
     }
 
+    handleReset = (time) => {
+        console.log('fired')
+     clearInterval(interval);
+     this.setState({
+         interval: time
+     })   
+    }
+
     render() {
         return (
         <div className="container">
@@ -54,6 +62,7 @@ class App extends Component {
                 <Controls
                     clockToggle={this.clockToggle}
                     intervalSet={this.intervalSet}
+                    handleReset={this.handleReset}
                 />
             </Layout>
         </div>

@@ -18,24 +18,38 @@ class Controls extends Component {
     
     handleSubmit = (event) => {
         event.preventDefault();
-        const { intervalSet } = this.props;
-
-        
-        
+        const { intervalSet } = this.props;        
         intervalSet(Number(this.interval.value * 60));
     }
+
+    handleReset = () => {
+        this.toggle = !this.toggle;
+        this.props.handleReset(1080);
+    }
+
+    
 
     render() {
         
         return (
+            
             <div>
                 <button onClick={ this.handleStartStop }>Start/Stop</button>
-                <button>Reset</button>
-                <form onSubmit={this.handleSubmit}>
+                <button onClick={this.handleReset}>Reset</button>
+                
                     <label>Timer Length</label>
-                    <input ref={(input) => this.interval = input } type="number" defaultValue="30"/>
-                    <button type="submit" hidden>Submit</button>
-                </form>
+                    {
+                        this.toggle ? 
+                        "" :
+                        <form onChange={this.handleSubmit}>
+                        <input ref={(input) => this.interval = input } type="number" defaultValue="30"/>
+                        <button type="submit" hidden>Submit</button>
+                        </form>
+                        
+                    }
+                    
+                    
+                
             </div>
         )
 
