@@ -63,6 +63,7 @@ class App extends Component {
                     clockToggle={this.clockToggle}
                     intervalSet={this.intervalSet}
                     handleReset={this.handleReset}
+                    interval={this.state.interval}
                 />
             </Layout>
         </div>

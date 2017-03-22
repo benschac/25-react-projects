@@ -24,7 +24,7 @@ class Controls extends Component {
 
     handleReset = () => {
         this.toggle = !this.toggle;
-        this.props.handleReset(1080);
+        this.props.handleReset(1800);
     }
 
     
@@ -34,15 +34,15 @@ class Controls extends Component {
         return (
             
             <div>
-                <button onClick={ this.handleStartStop }>Start/Stop</button>
+                <button onClick={ this.handleStartStop }>{this.toggle ? "Stop" : "Start"}</button>
                 <button onClick={this.handleReset}>Reset</button>
                 
-                    <label>Timer Length</label>
                     {
                         this.toggle ? 
                         "" :
                         <form onChange={this.handleSubmit}>
-                        <input ref={(input) => this.interval = input } type="number" defaultValue="30"/>
+                        <label>Timer Length</label>
+                        <input ref={(input) => this.interval = input } type="number" defaultValue={this.props.interval / 60}/>
                         <button type="submit" hidden>Submit</button>
                         </form>
                         
