@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Redux from 'redux';
+// Thunk
+
 import './App.css';
 
 

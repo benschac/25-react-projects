@@ -6,8 +6,12 @@
     "react-scripts": "0.9.4"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
