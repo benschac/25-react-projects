@@ -4,9 +4,9 @@ export const REQUEST_QUOTES = 'REQUEST_QUOTES';
 export const RECEIVE_QUOTES = 'RECEIVE_QUOTES';
 
 
-const requestQuotes = () => { type: REQUEST_QUOTES };
+export const requestQuotes = () => { type: REQUEST_QUOTES };
 
-const receiveQuotes = (json) => {
+export const receiveQuotes = (json) => {
     return {
         type: RECEIVE_QUOTES,
         quote: json.message,
