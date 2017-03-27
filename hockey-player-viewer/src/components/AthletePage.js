@@ -13,6 +13,7 @@ class AthletePage extends Component {
     render() {
         const { id } = this.props.params;
         const athlete = athletes.filter(athlete => athlete.id === id)[0];
+        console.log()
         if(!athlete) {
             return <NotFoundPage />;
         }

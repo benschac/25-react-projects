@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+// import teams from '../data/teams.js';
 
 class AthletesMenu extends Component {
 
+    componentWillReceiveProps(nextProps) {
+        this.props.teams = nextProps.teams;
+    }
+
     render() {
-        const { athletes } = this.props;
+        let { teams } = this.props;
+        
+        console.log(teams, 'athletes component');
+    
         return (
             <nav className="athletes-menu">
-                {athletes.map( menuAthlete => {
-                    return <Link key={menuAthlete.id} 
-                                 to={`/athlete/${menuAthlete.id}`}
-                                 activeClassName="active">
-                                 {menuAthlete.name}
+                {teams.map( (menuTeam, index) => {
+                    index = index + 1;
+                    return <Link key={menuTeam.abbreviation} 
+                                 to={`/team/${menuTeam.abbreviation}`}
+                                 activeClassName="active"
+                                 className={`logo-bg--team-${index}`}
+                                 style={{width: 40, height: 26}}>
+                                 {menuTeam.teamName}
                           </Link>
                 })}
             </nav>
