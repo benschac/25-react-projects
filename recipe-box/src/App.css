@@ -3,7 +3,6 @@
 .app__container {
     max-width: 60%;
     margin: 0 auto;
-    border: 2px dotted black;
 }
 
 * {
@@ -18,4 +17,12 @@ li {
     list-style: none;
 }
 
+button {
+    margin-top: 3px;
+    margin-right: 3px;
+}
+
+ul {
+    padding: 0;
+}
 
