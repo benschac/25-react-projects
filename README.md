@@ -19,9 +19,9 @@ Users Can:
 ![Todo List](http://g.recordit.co/uoR1VVcGXM.gif)
 
 
-### Project - Recipe Box (React + LocalStorage API)
+### Project - Recipe Box (React + LocalStorage API + Bootstrap)
 Built with React.js using LocalStorage we can Create, Read, Update and Destroy Recipes.  This application heavily uses React's State and LifeCycle components in order to make this functionality possible.  Want to read more.  Check out my blog post on this project [here](https://medium.com/@benschac/fcc-leaderboard-and-understanding-state-9bb9a46821f#.pu2z15wqe).
-![Recipe Box](http://recordit.co/WLRJAORuML)
+![Recipe Box](http://g.recordit.co/c0WSZThWgo.gif)
 
 
 ### Project - Leader Board (React + Fetch API):
