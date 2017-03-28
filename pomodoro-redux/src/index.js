@@ -1,6 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Redux,{ createStore } from 'redux';
+import App from './components/App';
+import {
+startTimer,
+stopTimer,
+editInterval,
+resetTimer
+} from './actions'
 import './index.css';
 
 ReactDOM.render(
