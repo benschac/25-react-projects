@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react'
 import Todo from './Todo'
 
-const TodoList = ({ todos, onTodoClick }) => (
+const TodoList = ({ todos, onTodoClick, list }) => (
   <ul>
-    {todos.map(todo =>
+    {todos.filter(todo => todo.list === list).map(todo =>
       <Todo
         key={todo.id}
         {...todo}

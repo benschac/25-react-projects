@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Segment } from 'semantic-ui-react';
 
 const Todo = ({onClick, completed, text }) => (
     <li
@@ -6,7 +7,9 @@ const Todo = ({onClick, completed, text }) => (
         style={{
             textDecoration: completed ? 'line-through' : 'none'
         }}>
+        <Segment>
         { text }
+        </Segment>
     </li>
 )
 
