@@ -12,6 +12,7 @@ resetTimer
 } from './actions'
 import timerReducer from './reducers';
 import loggerMiddleware from 'redux-logger';
+import VisibleClock from '../containers/VisibleClock';
 import './index.css';
 
 let store = createStore(
@@ -26,7 +27,7 @@ store.dispatch(stopTimer())
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <VisibleClock />
   </Provider>,
   document.getElementById('root')
 );
